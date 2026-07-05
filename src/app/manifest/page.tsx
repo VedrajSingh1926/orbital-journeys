@@ -22,8 +22,8 @@ export default function Manifest() {
       setDestData(parsed);
     } else {
       console.log("MANIFEST (fallback)");
-      import("../../data/destinations").then(({ ALL_DESTINATIONS }) => {
-        setDestData(ALL_DESTINATIONS[0]);
+      import("../../data/destinations").then(({ ALL_DESTINATIONS_INDIA }) => {
+        setDestData(ALL_DESTINATIONS_INDIA[0]);
       });
     }
   }, []);
@@ -71,7 +71,7 @@ export default function Manifest() {
 
   if (!mounted || !destData) {
     return (
-      <main className="relative w-full min-h-screen bg-[#F8F7F4] text-[#111111] flex flex-col items-center justify-center p-6">
+      <main className="relative w-full min-h-screen bg-[#FCFBF7] text-[#111111] flex flex-col items-center justify-center p-6">
         <motion.p 
           initial={{ opacity: 0 }} 
           animate={{ opacity: 1 }} 
@@ -85,7 +85,7 @@ export default function Manifest() {
   }
 
   return (
-    <main className="relative w-full min-h-screen bg-[#F8F7F4] text-[#111111] flex items-center justify-center p-6 overflow-hidden">
+    <main className="relative w-full min-h-screen bg-[#FCFBF7] text-[#111111] flex items-center justify-center p-6 overflow-hidden">
       
       <AnimatePresence>
         {animationState === 2 && (
@@ -142,7 +142,7 @@ export default function Manifest() {
             <motion.h2 
               initial={{ y: 20, opacity: 0 }}
               animate={{ y: 0, opacity: 1 }}
-              className="text-[#F8F7F4] font-serif text-5xl md:text-7xl mb-4"
+              className="text-[#FCFBF7] font-serif text-5xl md:text-7xl mb-4"
             >
               Journey Manifested
             </motion.h2>
@@ -219,7 +219,7 @@ export default function Manifest() {
               </div>
             </div>
             
-            <div className="mb-8 p-6 bg-white border border-[#111111]/5 rounded-sm">
+            <div className="mb-8 p-6 bg-white border border-[#111111]/10 rounded-sm shadow-[0_8px_30px_rgb(0,0,0,0.04)]">
               <h3 className="font-sans text-xs tracking-widest uppercase text-[#D6B36A] mb-3">Experience Summary</h3>
               <p className="font-serif italic text-lg leading-relaxed">{destData && destData.story ? destData.story.whyVisit : 'A journey to discover the unknown.'}</p>
             </div>
@@ -255,7 +255,7 @@ export default function Manifest() {
             {animationState === 0 && (
               <button 
                 onClick={handleConfirm}
-                className="group relative w-full flex items-center justify-between px-8 py-6 overflow-hidden rounded-sm bg-[#111111] text-[#F8F7F4] hover:bg-[#D6B36A] hover:text-[#111111] transition-colors duration-1000"
+                className="group relative w-full flex items-center justify-between px-8 py-6 overflow-hidden rounded-sm bg-[#111111] text-[#FCFBF7] hover:bg-[#D6B36A] hover:text-[#111111] transition-colors duration-1000"
               >
                 <span className="relative z-10 font-sans tracking-widest uppercase text-sm">
                   Confirm Journey

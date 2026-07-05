@@ -33,7 +33,7 @@ export default function Header() {
       initial={{ opacity: 0, y: -20 }}
       animate={{ opacity: 1, y: 0 }}
       transition={{ duration: 1.5, ease: [0.16, 1, 0.3, 1] }}
-      className="fixed top-0 left-0 right-0 z-[100] flex flex-col justify-center items-center pointer-events-none text-[#F8F7F4]"
+      className="fixed top-0 left-0 right-0 z-[100] flex flex-col justify-center items-center pointer-events-none text-[#FCFBF7]"
       style={{
         height: '56px',
         background: 'rgba(0,0,0,0.18)',

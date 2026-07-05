@@ -5,62 +5,82 @@ import { motion, AnimatePresence } from "framer-motion";
 import { useRouter } from "next/navigation";
 import FilmGrain from "../../components/FilmGrain";
 import { useJourney } from "../../context/JourneyContext";
+import { getSmartFallback } from "../../data/destinations";
 
 const messages = [
-  "Crafting your journey...",
-  "Finding hidden destinations...",
+  "Curating your journey...",
+  "Consulting the oracle...",
   "Preparing your next memory..."
+];
+
+const WAVES = [
+  { wave: "M 0 300 Q 200 200 400 300 T 800 300 T 1200 300", x: 300, y: 300 },
+  { wave: "M 0 150 Q 300 250 600 150 T 1200 150", x: 600, y: 150 },
+  { wave: "M 0 600 C 300 500, 600 700, 900 600 S 1500 700, 1800 600", x: 800, y: 600 },
+  { wave: "M 0 450 Q 250 350 500 450 T 1000 450 T 1500 450", x: 400, y: 450 }
 ];
 
 export default function ResonanceLoading() {
   const router = useRouter();
   const [index, setIndex] = useState(0);
   const [mounted, setMounted] = useState(false);
-  const { destinations, updateDestinations, mood, companions, distance, location, days } = useJourney();
+  const { updateDestinations, mood, companions, distance, location, days } = useJourney();
 
   useEffect(() => {
     setMounted(true);
     
-    // Call AI Enhancement with 2000ms timeout
-    const enhanceDestinations = async () => {
+    const generateJourney = async () => {
       const controller = new AbortController();
       const timeoutId = setTimeout(() => controller.abort(), 2000);
       
+      let finalDestinations = [];
+
       try {
-        if (!destinations || destinations.length === 0) return;
+        const payload = {
+          mood,
+          duration: days,
+          companions,
+          locationPreference: distance,
+          currentLocation: location || "Earth",
+          currentMonth: new Date().toLocaleString('default', { month: 'long' }),
+          currentSeason: "Summer"
+        };
+
         const res = await fetch("/api/enhance", {
           method: "POST",
           headers: { "Content-Type": "application/json" },
-          body: JSON.stringify({ destinations, mood, companions }),
+          body: JSON.stringify(payload),
           signal: controller.signal
         });
         
         if (res.ok) {
-          const { success, enhanced } = await res.json();
-          if (success && enhanced && Array.isArray(enhanced)) {
-            const updated = destinations.map((d: any) => {
-              const enhancement = enhanced.find((e: any) => e.id === d.id);
-              if (enhancement) {
-                return {
-                  ...d,
-                  story: {
-                    ...d.story,
-                    personalizedReason: enhancement.personalizedReason,
-                    emotionalDescription: enhancement.emotionalDescription,
-                    luxuryStoryText: enhancement.luxuryStoryText,
-                    whyVisit: enhancement.luxuryStoryText || enhancement.emotionalDescription || d.story.whyVisit
-                  }
-                };
-              }
-              return d;
-            });
-            updateDestinations(updated);
+          const { success, destinations } = await res.json();
+          if (success && destinations && Array.isArray(destinations)) {
+            finalDestinations = destinations;
           }
         }
       } catch (e) {
-        console.warn("AI Enhancement failed or timed out, using local DB:", e);
+        console.warn("AI Generation failed or timed out. Initiating fallback...", e);
       } finally {
         clearTimeout(timeoutId);
+        
+        if (finalDestinations.length === 0) {
+          console.log("FALLBACK ACTIVATED");
+          finalDestinations = getSmartFallback(distance);
+        } else {
+          console.log("FINAL DESTINATIONS (AI GENERATED)", finalDestinations);
+        }
+
+        // Attach UI graph coordinates
+        const withUI = finalDestinations.map((d: any, i: number) => ({
+          ...d,
+          wave: WAVES[i % WAVES.length].wave,
+          x: WAVES[i % WAVES.length].x,
+          y: WAVES[i % WAVES.length].y
+        }));
+
+        updateDestinations(withUI);
+
         try {
           router.replace("/resonance");
         } catch (e) {
@@ -69,28 +89,28 @@ export default function ResonanceLoading() {
       }
     };
 
-    enhanceDestinations();
+    generateJourney();
 
     const interval = setInterval(() => {
       setIndex(prev => (prev + 1) % messages.length);
-    }, 600); // cycle messages
+    }, 600);
 
-    // Hard fallback just in case router is completely stuck
     const fallbackTimer = setTimeout(() => {
-      window.location.href = "/resonance";
+      if (typeof window !== "undefined") {
+        window.location.href = "/resonance";
+      }
     }, 2500);
 
     return () => {
       clearInterval(interval);
       clearTimeout(fallbackTimer);
     };
-  }, [router, destinations, mood, companions, updateDestinations]);
+  }, [router, mood, companions, distance, location, days, updateDestinations]);
 
   return (
-    <main className="relative w-full h-screen overflow-hidden bg-[#F8F7F4] text-[#111111] flex flex-col items-center justify-center">
+    <main className="relative w-full h-screen overflow-hidden bg-[#FCFBF7] text-[#111111] flex flex-col items-center justify-center">
       <FilmGrain />
       
-      {/* Simple Stars */}
       <div className="absolute inset-0 z-0 pointer-events-none overflow-hidden bg-[#111111]">
         {mounted && Array.from({ length: 40 }).map((_, i) => (
           <motion.div
@@ -141,7 +161,7 @@ export default function ResonanceLoading() {
             animate={{ opacity: 1 }}
             exit={{ opacity: 0 }}
             transition={{ duration: 0.3 }}
-            className="text-2xl md:text-4xl font-serif tracking-tight text-[#F8F7F4] font-light"
+            className="text-2xl md:text-4xl font-serif tracking-tight text-[#FCFBF7] font-light"
           >
             {messages[index]}
             <motion.span

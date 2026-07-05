@@ -1,12 +1,29 @@
+// SYSTEM GENERATED FILE - GEMINI PRIMARY ENGINE FALLBACK DB
+
+export interface Place {
+  name: string;
+  description: string;
+}
+
+export interface Food {
+  name: string;
+  description: string;
+}
+
 export interface DestinationStory {
+  heroTitle: string;
+  heroSubtitle: string;
   whyVisit: string;
   whyFamous: string;
+  places: Place[];
+  food: Food[];
   culture: string;
-  food: string[];
-  places: string[];
   weather: string;
-  distance: string;
-  travelTime: string;
+  bestSeason: string;
+  currentSeason: string;
+  travelTips: string[];
+  hiddenGems: string[];
+  instagramSpots: string[];
   personalizedReason: string;
 }
 
@@ -14,248 +31,1424 @@ export interface Destination {
   id: string;
   name: string;
   country: string;
-  image: string;
-  description: string;
-  match: number | string;
+  continent: string;
+  type: string;
+  match: number;
   budget: string;
-  duration: string;
+  distance: string;
+  travelTime: string;
+  description: string;
+  personalizedReason: string;
+  imageQuery: string;
   
-  // Graph rendering data
-  wave: string;
-  x: number;
-  y: number;
+  // Graph rendering data (dynamically attached by UI)
+  wave?: string;
+  x?: number;
+  y?: number;
   isUnexpected?: boolean;
   isCustomSearch?: boolean;
 
   story: DestinationStory;
 }
 
-export const ALL_DESTINATIONS: Destination[] = [
+export const ALL_DESTINATIONS_INDIA: Destination[] = [
   {
-    id: "kyoto",
-    name: "KYOTO",
-    country: "JAPAN",
-    image: "https://images.unsplash.com/photo-1493976040374-85c8e12f0c0e?q=80&w=2070",
-    description: "Ancient temples whisper through morning mist.",
-    match: "98%",
-    budget: "₹85,000",
-    duration: "7 Days",
-    wave: "M 0 300 Q 200 200 400 300 T 800 300 T 1200 300",
-    x: 300, y: 300,
-    story: {
-      whyVisit: "Kyoto offers a rare glimpse into the soul of traditional Japan.",
-      whyFamous: "The harmonious blend of pristine nature and meticulous architecture.",
-      culture: "Witnessing the profound tranquility of a traditional tea ceremony.",
-      food: ["Kaiseki", "Matcha", "Yudofu"],
-      places: ["Fushimi Inari", "Arashiyama Bamboo Grove", "Kinkaku-ji"],
-      weather: "18°C",
-      distance: "5800 KM",
-      travelTime: "9 Hours",
-      personalizedReason: "Matches your deep interest in cultural heritage and slow travel."
+    "id": "ladakh",
+    "name": "LADAKH",
+    "country": "India",
+    "continent": "Asia",
+    "type": "expected",
+    "match": 94,
+    "budget": "₹85,000",
+    "distance": "2000 KM",
+    "travelTime": "4 Hours",
+    "description": "A stunning escape into the heart of Ladakh.",
+    "personalizedReason": "Perfectly suited for your mood, offering a serene yet deeply moving environment.",
+    "imageQuery": "cinematic Ladakh luxury travel emotional",
+    "story": {
+      "heroTitle": "The Soul of Ladakh",
+      "heroSubtitle": "Where ancient traditions meet untamed, breathtaking natural beauty in perfect harmony.",
+      "whyVisit": "Ladakh is an absolute masterpiece of nature and culture. Imagine waking up to sweeping, cinematic vistas that have remained untouched by time. The air is crisp, the light is golden, and every corner whispers stories of a glorious past. This is not just a vacation; it is a profound emotional reset designed to elevate your spirit and immerse you in sheer, unadulterated luxury.",
+      "whyFamous": "Renowned globally for its striking contrasts, Ladakh captures the imagination of elite travelers. Its dramatic landscapes and perfectly preserved heritage sites have made it a crown jewel of international tourism. From exclusive boutique retreats to Michelin-worthy local culinary scenes, the region offers a masterclass in combining raw geographical drama with world-class hospitality and service.",
+      "places": [
+        {
+          "name": "Ladakh Landmark 1",
+          "description": "Experience the breathtaking beauty and rich history of Ladakh Landmark 1. A place where timeless elegance meets unparalleled grandeur, perfectly aligned with your luxury travel aspirations."
+        },
+        {
+          "name": "Ladakh Landmark 2",
+          "description": "Experience the breathtaking beauty and rich history of Ladakh Landmark 2. A place where timeless elegance meets unparalleled grandeur, perfectly aligned with your luxury travel aspirations."
+        },
+        {
+          "name": "Ladakh Landmark 3",
+          "description": "Experience the breathtaking beauty and rich history of Ladakh Landmark 3. A place where timeless elegance meets unparalleled grandeur, perfectly aligned with your luxury travel aspirations."
+        },
+        {
+          "name": "Ladakh Landmark 4",
+          "description": "Experience the breathtaking beauty and rich history of Ladakh Landmark 4. A place where timeless elegance meets unparalleled grandeur, perfectly aligned with your luxury travel aspirations."
+        },
+        {
+          "name": "Ladakh Landmark 5",
+          "description": "Experience the breathtaking beauty and rich history of Ladakh Landmark 5. A place where timeless elegance meets unparalleled grandeur, perfectly aligned with your luxury travel aspirations."
+        }
+      ],
+      "food": [
+        {
+          "name": "Traditional Ladakh Dish 1",
+          "description": "Savor the exquisite flavors of Traditional Ladakh Dish 1. Crafted with traditional techniques and local ingredients, it offers a culinary journey that delights the most refined palates."
+        },
+        {
+          "name": "Traditional Ladakh Dish 2",
+          "description": "Savor the exquisite flavors of Traditional Ladakh Dish 2. Crafted with traditional techniques and local ingredients, it offers a culinary journey that delights the most refined palates."
+        },
+        {
+          "name": "Traditional Ladakh Dish 3",
+          "description": "Savor the exquisite flavors of Traditional Ladakh Dish 3. Crafted with traditional techniques and local ingredients, it offers a culinary journey that delights the most refined palates."
+        },
+        {
+          "name": "Traditional Ladakh Dish 4",
+          "description": "Savor the exquisite flavors of Traditional Ladakh Dish 4. Crafted with traditional techniques and local ingredients, it offers a culinary journey that delights the most refined palates."
+        },
+        {
+          "name": "Traditional Ladakh Dish 5",
+          "description": "Savor the exquisite flavors of Traditional Ladakh Dish 5. Crafted with traditional techniques and local ingredients, it offers a culinary journey that delights the most refined palates."
+        }
+      ],
+      "culture": "The culture here is a vibrant tapestry of indigenous rituals, high-art, and warm, unparalleled hospitality.",
+      "weather": "22°C",
+      "bestSeason": "October to March",
+      "currentSeason": "Monsoon",
+      "travelTips": [
+        "Always carry a premium pashmina for the evening chill.",
+        "Hire a private local curator for exclusive access.",
+        "Embrace the slow pace of life and travel sustainably.",
+        "Reserve fine-dining experiences well in advance.",
+        "Pack comfortable yet elegant walking attire."
+      ],
+      "hiddenGems": [
+        "The Secret Courtyard of the Old City",
+        "A hidden cascade far from the tourist trail",
+        "An exclusive artisan workshop open by appointment only"
+      ],
+      "instagramSpots": [
+        "The Golden Hour Overlook",
+        "The Royal Heritage Corridor",
+        "The Infinity Pool edge at dawn"
+      ],
+      "personalizedReason": "Your desire for adventure and luxury finds its ultimate expression here, blending raw nature with supreme comfort."
     }
   },
   {
-    id: "bali",
-    name: "BALI",
-    country: "INDONESIA",
-    image: "https://images.unsplash.com/photo-1537996194471-e657df975ab4?q=80&w=2038",
-    description: "Where the jungle meets spiritual devotion.",
-    match: "95%",
-    budget: "₹45,000",
-    duration: "5 Days",
-    wave: "M 0 150 Q 300 250 600 150 T 1200 150",
-    x: 600, y: 150,
-    story: {
-      whyVisit: "Bali is not just a place, it is a tropical state of mind.",
-      whyFamous: "The Island of the Gods balances vibrant coastal life with deep spiritual roots.",
-      culture: "Daily offerings and traditional gamelan music filling the air.",
-      food: ["Nasi Goreng", "Babi Guling", "Smoothie Bowls"],
-      places: ["Ubud Monkey Forest", "Uluwatu Temple", "Tegalalang Rice Terrace"],
-      weather: "28°C",
-      distance: "4200 KM",
-      travelTime: "7 Hours",
-      personalizedReason: "Perfect for your desire to escape into nature."
+    "id": "kerala",
+    "name": "KERALA",
+    "country": "India",
+    "continent": "Asia",
+    "type": "expected",
+    "match": 98,
+    "budget": "₹85,000",
+    "distance": "2000 KM",
+    "travelTime": "4 Hours",
+    "description": "A stunning escape into the heart of Kerala.",
+    "personalizedReason": "Perfectly suited for your mood, offering a serene yet deeply moving environment.",
+    "imageQuery": "cinematic Kerala luxury travel emotional",
+    "story": {
+      "heroTitle": "The Soul of Kerala",
+      "heroSubtitle": "Where ancient traditions meet untamed, breathtaking natural beauty in perfect harmony.",
+      "whyVisit": "Kerala is an absolute masterpiece of nature and culture. Imagine waking up to sweeping, cinematic vistas that have remained untouched by time. The air is crisp, the light is golden, and every corner whispers stories of a glorious past. This is not just a vacation; it is a profound emotional reset designed to elevate your spirit and immerse you in sheer, unadulterated luxury.",
+      "whyFamous": "Renowned globally for its striking contrasts, Kerala captures the imagination of elite travelers. Its dramatic landscapes and perfectly preserved heritage sites have made it a crown jewel of international tourism. From exclusive boutique retreats to Michelin-worthy local culinary scenes, the region offers a masterclass in combining raw geographical drama with world-class hospitality and service.",
+      "places": [
+        {
+          "name": "Kerala Landmark 1",
+          "description": "Experience the breathtaking beauty and rich history of Kerala Landmark 1. A place where timeless elegance meets unparalleled grandeur, perfectly aligned with your luxury travel aspirations."
+        },
+        {
+          "name": "Kerala Landmark 2",
+          "description": "Experience the breathtaking beauty and rich history of Kerala Landmark 2. A place where timeless elegance meets unparalleled grandeur, perfectly aligned with your luxury travel aspirations."
+        },
+        {
+          "name": "Kerala Landmark 3",
+          "description": "Experience the breathtaking beauty and rich history of Kerala Landmark 3. A place where timeless elegance meets unparalleled grandeur, perfectly aligned with your luxury travel aspirations."
+        },
+        {
+          "name": "Kerala Landmark 4",
+          "description": "Experience the breathtaking beauty and rich history of Kerala Landmark 4. A place where timeless elegance meets unparalleled grandeur, perfectly aligned with your luxury travel aspirations."
+        },
+        {
+          "name": "Kerala Landmark 5",
+          "description": "Experience the breathtaking beauty and rich history of Kerala Landmark 5. A place where timeless elegance meets unparalleled grandeur, perfectly aligned with your luxury travel aspirations."
+        }
+      ],
+      "food": [
+        {
+          "name": "Traditional Kerala Dish 1",
+          "description": "Savor the exquisite flavors of Traditional Kerala Dish 1. Crafted with traditional techniques and local ingredients, it offers a culinary journey that delights the most refined palates."
+        },
+        {
+          "name": "Traditional Kerala Dish 2",
+          "description": "Savor the exquisite flavors of Traditional Kerala Dish 2. Crafted with traditional techniques and local ingredients, it offers a culinary journey that delights the most refined palates."
+        },
+        {
+          "name": "Traditional Kerala Dish 3",
+          "description": "Savor the exquisite flavors of Traditional Kerala Dish 3. Crafted with traditional techniques and local ingredients, it offers a culinary journey that delights the most refined palates."
+        },
+        {
+          "name": "Traditional Kerala Dish 4",
+          "description": "Savor the exquisite flavors of Traditional Kerala Dish 4. Crafted with traditional techniques and local ingredients, it offers a culinary journey that delights the most refined palates."
+        },
+        {
+          "name": "Traditional Kerala Dish 5",
+          "description": "Savor the exquisite flavors of Traditional Kerala Dish 5. Crafted with traditional techniques and local ingredients, it offers a culinary journey that delights the most refined palates."
+        }
+      ],
+      "culture": "The culture here is a vibrant tapestry of indigenous rituals, high-art, and warm, unparalleled hospitality.",
+      "weather": "22°C",
+      "bestSeason": "October to March",
+      "currentSeason": "Monsoon",
+      "travelTips": [
+        "Always carry a premium pashmina for the evening chill.",
+        "Hire a private local curator for exclusive access.",
+        "Embrace the slow pace of life and travel sustainably.",
+        "Reserve fine-dining experiences well in advance.",
+        "Pack comfortable yet elegant walking attire."
+      ],
+      "hiddenGems": [
+        "The Secret Courtyard of the Old City",
+        "A hidden cascade far from the tourist trail",
+        "An exclusive artisan workshop open by appointment only"
+      ],
+      "instagramSpots": [
+        "The Golden Hour Overlook",
+        "The Royal Heritage Corridor",
+        "The Infinity Pool edge at dawn"
+      ],
+      "personalizedReason": "Your desire for adventure and luxury finds its ultimate expression here, blending raw nature with supreme comfort."
     }
   },
   {
-    id: "iceland",
-    name: "ICELAND",
-    country: "NORDIC",
-    image: "https://images.unsplash.com/photo-1476610182048-b716b8518aae?q=80&w=2159",
-    description: "Fire, ice, and dancing northern lights.",
-    match: "91%",
-    budget: "₹150,000",
-    duration: "10 Days",
-    wave: "M 0 600 C 300 500, 600 700, 900 600 S 1500 700, 1800 600",
-    x: 800, y: 600,
-    story: {
-      whyVisit: "A landscape that feels like another planet entirely.",
-      whyFamous: "The dramatic contrast of glaciers resting on active volcanoes.",
-      culture: "A deep connection to sagas, folklore, and the harsh beauty of nature.",
-      food: ["Arctic Char", "Skyr", "Rye Bread"],
-      places: ["Blue Lagoon", "Gullfoss", "Reynisfjara Beach"],
-      weather: "5°C",
-      distance: "8200 KM",
-      travelTime: "12 Hours",
-      personalizedReason: "Fulfills your craving for untamed wilderness."
+    "id": "meghalaya",
+    "name": "MEGHALAYA",
+    "country": "India",
+    "continent": "Asia",
+    "type": "expected",
+    "match": 96,
+    "budget": "₹85,000",
+    "distance": "2000 KM",
+    "travelTime": "4 Hours",
+    "description": "A stunning escape into the heart of Meghalaya.",
+    "personalizedReason": "Perfectly suited for your mood, offering a serene yet deeply moving environment.",
+    "imageQuery": "cinematic Meghalaya luxury travel emotional",
+    "story": {
+      "heroTitle": "The Soul of Meghalaya",
+      "heroSubtitle": "Where ancient traditions meet untamed, breathtaking natural beauty in perfect harmony.",
+      "whyVisit": "Meghalaya is an absolute masterpiece of nature and culture. Imagine waking up to sweeping, cinematic vistas that have remained untouched by time. The air is crisp, the light is golden, and every corner whispers stories of a glorious past. This is not just a vacation; it is a profound emotional reset designed to elevate your spirit and immerse you in sheer, unadulterated luxury.",
+      "whyFamous": "Renowned globally for its striking contrasts, Meghalaya captures the imagination of elite travelers. Its dramatic landscapes and perfectly preserved heritage sites have made it a crown jewel of international tourism. From exclusive boutique retreats to Michelin-worthy local culinary scenes, the region offers a masterclass in combining raw geographical drama with world-class hospitality and service.",
+      "places": [
+        {
+          "name": "Meghalaya Landmark 1",
+          "description": "Experience the breathtaking beauty and rich history of Meghalaya Landmark 1. A place where timeless elegance meets unparalleled grandeur, perfectly aligned with your luxury travel aspirations."
+        },
+        {
+          "name": "Meghalaya Landmark 2",
+          "description": "Experience the breathtaking beauty and rich history of Meghalaya Landmark 2. A place where timeless elegance meets unparalleled grandeur, perfectly aligned with your luxury travel aspirations."
+        },
+        {
+          "name": "Meghalaya Landmark 3",
+          "description": "Experience the breathtaking beauty and rich history of Meghalaya Landmark 3. A place where timeless elegance meets unparalleled grandeur, perfectly aligned with your luxury travel aspirations."
+        },
+        {
+          "name": "Meghalaya Landmark 4",
+          "description": "Experience the breathtaking beauty and rich history of Meghalaya Landmark 4. A place where timeless elegance meets unparalleled grandeur, perfectly aligned with your luxury travel aspirations."
+        },
+        {
+          "name": "Meghalaya Landmark 5",
+          "description": "Experience the breathtaking beauty and rich history of Meghalaya Landmark 5. A place where timeless elegance meets unparalleled grandeur, perfectly aligned with your luxury travel aspirations."
+        }
+      ],
+      "food": [
+        {
+          "name": "Traditional Meghalaya Dish 1",
+          "description": "Savor the exquisite flavors of Traditional Meghalaya Dish 1. Crafted with traditional techniques and local ingredients, it offers a culinary journey that delights the most refined palates."
+        },
+        {
+          "name": "Traditional Meghalaya Dish 2",
+          "description": "Savor the exquisite flavors of Traditional Meghalaya Dish 2. Crafted with traditional techniques and local ingredients, it offers a culinary journey that delights the most refined palates."
+        },
+        {
+          "name": "Traditional Meghalaya Dish 3",
+          "description": "Savor the exquisite flavors of Traditional Meghalaya Dish 3. Crafted with traditional techniques and local ingredients, it offers a culinary journey that delights the most refined palates."
+        },
+        {
+          "name": "Traditional Meghalaya Dish 4",
+          "description": "Savor the exquisite flavors of Traditional Meghalaya Dish 4. Crafted with traditional techniques and local ingredients, it offers a culinary journey that delights the most refined palates."
+        },
+        {
+          "name": "Traditional Meghalaya Dish 5",
+          "description": "Savor the exquisite flavors of Traditional Meghalaya Dish 5. Crafted with traditional techniques and local ingredients, it offers a culinary journey that delights the most refined palates."
+        }
+      ],
+      "culture": "The culture here is a vibrant tapestry of indigenous rituals, high-art, and warm, unparalleled hospitality.",
+      "weather": "22°C",
+      "bestSeason": "October to March",
+      "currentSeason": "Monsoon",
+      "travelTips": [
+        "Always carry a premium pashmina for the evening chill.",
+        "Hire a private local curator for exclusive access.",
+        "Embrace the slow pace of life and travel sustainably.",
+        "Reserve fine-dining experiences well in advance.",
+        "Pack comfortable yet elegant walking attire."
+      ],
+      "hiddenGems": [
+        "The Secret Courtyard of the Old City",
+        "A hidden cascade far from the tourist trail",
+        "An exclusive artisan workshop open by appointment only"
+      ],
+      "instagramSpots": [
+        "The Golden Hour Overlook",
+        "The Royal Heritage Corridor",
+        "The Infinity Pool edge at dawn"
+      ],
+      "personalizedReason": "Your desire for adventure and luxury finds its ultimate expression here, blending raw nature with supreme comfort."
     }
   },
   {
-    id: "switzerland",
-    name: "SWITZERLAND",
-    country: "EUROPE",
-    image: "https://images.unsplash.com/photo-1530122037265-a5f1f91d3b99?q=80&w=2070",
-    description: "Pristine alpine lakes and towering peaks.",
-    match: "94%",
-    budget: "₹180,000",
-    duration: "8 Days",
-    wave: "M 0 450 Q 250 350 500 450 T 1000 450 T 1500 450",
-    x: 400, y: 450,
-    story: {
-      whyVisit: "The epitome of alpine luxury and breathtaking landscapes.",
-      whyFamous: "Perfectly engineered scenic train rides through the Alps.",
-      culture: "Precision, elegance, and a quiet appreciation for the dramatic outdoors.",
-      food: ["Cheese Fondue", "Raclette", "Swiss Chocolate"],
-      places: ["Zermatt", "Lake Geneva", "Jungfraujoch"],
-      weather: "12°C",
-      distance: "6500 KM",
-      travelTime: "10 Hours",
-      personalizedReason: "The absolute height of luxury and natural beauty."
+    "id": "spiti",
+    "name": "SPITI",
+    "country": "India",
+    "continent": "Asia",
+    "type": "expected",
+    "match": 90,
+    "budget": "₹85,000",
+    "distance": "2000 KM",
+    "travelTime": "4 Hours",
+    "description": "A stunning escape into the heart of Spiti.",
+    "personalizedReason": "Perfectly suited for your mood, offering a serene yet deeply moving environment.",
+    "imageQuery": "cinematic Spiti luxury travel emotional",
+    "story": {
+      "heroTitle": "The Soul of Spiti",
+      "heroSubtitle": "Where ancient traditions meet untamed, breathtaking natural beauty in perfect harmony.",
+      "whyVisit": "Spiti is an absolute masterpiece of nature and culture. Imagine waking up to sweeping, cinematic vistas that have remained untouched by time. The air is crisp, the light is golden, and every corner whispers stories of a glorious past. This is not just a vacation; it is a profound emotional reset designed to elevate your spirit and immerse you in sheer, unadulterated luxury.",
+      "whyFamous": "Renowned globally for its striking contrasts, Spiti captures the imagination of elite travelers. Its dramatic landscapes and perfectly preserved heritage sites have made it a crown jewel of international tourism. From exclusive boutique retreats to Michelin-worthy local culinary scenes, the region offers a masterclass in combining raw geographical drama with world-class hospitality and service.",
+      "places": [
+        {
+          "name": "Spiti Landmark 1",
+          "description": "Experience the breathtaking beauty and rich history of Spiti Landmark 1. A place where timeless elegance meets unparalleled grandeur, perfectly aligned with your luxury travel aspirations."
+        },
+        {
+          "name": "Spiti Landmark 2",
+          "description": "Experience the breathtaking beauty and rich history of Spiti Landmark 2. A place where timeless elegance meets unparalleled grandeur, perfectly aligned with your luxury travel aspirations."
+        },
+        {
+          "name": "Spiti Landmark 3",
+          "description": "Experience the breathtaking beauty and rich history of Spiti Landmark 3. A place where timeless elegance meets unparalleled grandeur, perfectly aligned with your luxury travel aspirations."
+        },
+        {
+          "name": "Spiti Landmark 4",
+          "description": "Experience the breathtaking beauty and rich history of Spiti Landmark 4. A place where timeless elegance meets unparalleled grandeur, perfectly aligned with your luxury travel aspirations."
+        },
+        {
+          "name": "Spiti Landmark 5",
+          "description": "Experience the breathtaking beauty and rich history of Spiti Landmark 5. A place where timeless elegance meets unparalleled grandeur, perfectly aligned with your luxury travel aspirations."
+        }
+      ],
+      "food": [
+        {
+          "name": "Traditional Spiti Dish 1",
+          "description": "Savor the exquisite flavors of Traditional Spiti Dish 1. Crafted with traditional techniques and local ingredients, it offers a culinary journey that delights the most refined palates."
+        },
+        {
+          "name": "Traditional Spiti Dish 2",
+          "description": "Savor the exquisite flavors of Traditional Spiti Dish 2. Crafted with traditional techniques and local ingredients, it offers a culinary journey that delights the most refined palates."
+        },
+        {
+          "name": "Traditional Spiti Dish 3",
+          "description": "Savor the exquisite flavors of Traditional Spiti Dish 3. Crafted with traditional techniques and local ingredients, it offers a culinary journey that delights the most refined palates."
+        },
+        {
+          "name": "Traditional Spiti Dish 4",
+          "description": "Savor the exquisite flavors of Traditional Spiti Dish 4. Crafted with traditional techniques and local ingredients, it offers a culinary journey that delights the most refined palates."
+        },
+        {
+          "name": "Traditional Spiti Dish 5",
+          "description": "Savor the exquisite flavors of Traditional Spiti Dish 5. Crafted with traditional techniques and local ingredients, it offers a culinary journey that delights the most refined palates."
+        }
+      ],
+      "culture": "The culture here is a vibrant tapestry of indigenous rituals, high-art, and warm, unparalleled hospitality.",
+      "weather": "22°C",
+      "bestSeason": "October to March",
+      "currentSeason": "Monsoon",
+      "travelTips": [
+        "Always carry a premium pashmina for the evening chill.",
+        "Hire a private local curator for exclusive access.",
+        "Embrace the slow pace of life and travel sustainably.",
+        "Reserve fine-dining experiences well in advance.",
+        "Pack comfortable yet elegant walking attire."
+      ],
+      "hiddenGems": [
+        "The Secret Courtyard of the Old City",
+        "A hidden cascade far from the tourist trail",
+        "An exclusive artisan workshop open by appointment only"
+      ],
+      "instagramSpots": [
+        "The Golden Hour Overlook",
+        "The Royal Heritage Corridor",
+        "The Infinity Pool edge at dawn"
+      ],
+      "personalizedReason": "Your desire for adventure and luxury finds its ultimate expression here, blending raw nature with supreme comfort."
     }
   },
   {
-    id: "leh",
-    name: "LEH LADAKH",
-    country: "INDIA",
-    image: "https://images.unsplash.com/photo-1581793707643-4c91a3297a78?q=80&w=2000",
-    description: "A high-altitude desert of stark, dramatic beauty.",
-    match: "97%",
-    budget: "₹35,000",
-    duration: "8 Days",
-    wave: "M 0 350 Q 200 450 400 350 T 800 350 T 1200 350",
-    x: 500, y: 350,
-    story: {
-      whyVisit: "Unmatched rugged landscapes and ancient Buddhist monasteries.",
-      whyFamous: "The sheer isolation and spiritual resonance of the high Himalayas.",
-      culture: "Deeply rooted Tibetan Buddhism influencing every aspect of life.",
-      food: ["Thukpa", "Momos", "Butter Tea"],
-      places: ["Pangong Lake", "Nubra Valley", "Khardung La"],
-      weather: "15°C",
-      distance: "800 KM",
-      travelTime: "2 Hours",
-      personalizedReason: "Perfect balance of adventure and raw beauty."
+    "id": "kashmir",
+    "name": "KASHMIR",
+    "country": "India",
+    "continent": "Asia",
+    "type": "expected",
+    "match": 96,
+    "budget": "₹85,000",
+    "distance": "2000 KM",
+    "travelTime": "4 Hours",
+    "description": "A stunning escape into the heart of Kashmir.",
+    "personalizedReason": "Perfectly suited for your mood, offering a serene yet deeply moving environment.",
+    "imageQuery": "cinematic Kashmir luxury travel emotional",
+    "story": {
+      "heroTitle": "The Soul of Kashmir",
+      "heroSubtitle": "Where ancient traditions meet untamed, breathtaking natural beauty in perfect harmony.",
+      "whyVisit": "Kashmir is an absolute masterpiece of nature and culture. Imagine waking up to sweeping, cinematic vistas that have remained untouched by time. The air is crisp, the light is golden, and every corner whispers stories of a glorious past. This is not just a vacation; it is a profound emotional reset designed to elevate your spirit and immerse you in sheer, unadulterated luxury.",
+      "whyFamous": "Renowned globally for its striking contrasts, Kashmir captures the imagination of elite travelers. Its dramatic landscapes and perfectly preserved heritage sites have made it a crown jewel of international tourism. From exclusive boutique retreats to Michelin-worthy local culinary scenes, the region offers a masterclass in combining raw geographical drama with world-class hospitality and service.",
+      "places": [
+        {
+          "name": "Kashmir Landmark 1",
+          "description": "Experience the breathtaking beauty and rich history of Kashmir Landmark 1. A place where timeless elegance meets unparalleled grandeur, perfectly aligned with your luxury travel aspirations."
+        },
+        {
+          "name": "Kashmir Landmark 2",
+          "description": "Experience the breathtaking beauty and rich history of Kashmir Landmark 2. A place where timeless elegance meets unparalleled grandeur, perfectly aligned with your luxury travel aspirations."
+        },
+        {
+          "name": "Kashmir Landmark 3",
+          "description": "Experience the breathtaking beauty and rich history of Kashmir Landmark 3. A place where timeless elegance meets unparalleled grandeur, perfectly aligned with your luxury travel aspirations."
+        },
+        {
+          "name": "Kashmir Landmark 4",
+          "description": "Experience the breathtaking beauty and rich history of Kashmir Landmark 4. A place where timeless elegance meets unparalleled grandeur, perfectly aligned with your luxury travel aspirations."
+        },
+        {
+          "name": "Kashmir Landmark 5",
+          "description": "Experience the breathtaking beauty and rich history of Kashmir Landmark 5. A place where timeless elegance meets unparalleled grandeur, perfectly aligned with your luxury travel aspirations."
+        }
+      ],
+      "food": [
+        {
+          "name": "Traditional Kashmir Dish 1",
+          "description": "Savor the exquisite flavors of Traditional Kashmir Dish 1. Crafted with traditional techniques and local ingredients, it offers a culinary journey that delights the most refined palates."
+        },
+        {
+          "name": "Traditional Kashmir Dish 2",
+          "description": "Savor the exquisite flavors of Traditional Kashmir Dish 2. Crafted with traditional techniques and local ingredients, it offers a culinary journey that delights the most refined palates."
+        },
+        {
+          "name": "Traditional Kashmir Dish 3",
+          "description": "Savor the exquisite flavors of Traditional Kashmir Dish 3. Crafted with traditional techniques and local ingredients, it offers a culinary journey that delights the most refined palates."
+        },
+        {
+          "name": "Traditional Kashmir Dish 4",
+          "description": "Savor the exquisite flavors of Traditional Kashmir Dish 4. Crafted with traditional techniques and local ingredients, it offers a culinary journey that delights the most refined palates."
+        },
+        {
+          "name": "Traditional Kashmir Dish 5",
+          "description": "Savor the exquisite flavors of Traditional Kashmir Dish 5. Crafted with traditional techniques and local ingredients, it offers a culinary journey that delights the most refined palates."
+        }
+      ],
+      "culture": "The culture here is a vibrant tapestry of indigenous rituals, high-art, and warm, unparalleled hospitality.",
+      "weather": "22°C",
+      "bestSeason": "October to March",
+      "currentSeason": "Monsoon",
+      "travelTips": [
+        "Always carry a premium pashmina for the evening chill.",
+        "Hire a private local curator for exclusive access.",
+        "Embrace the slow pace of life and travel sustainably.",
+        "Reserve fine-dining experiences well in advance.",
+        "Pack comfortable yet elegant walking attire."
+      ],
+      "hiddenGems": [
+        "The Secret Courtyard of the Old City",
+        "A hidden cascade far from the tourist trail",
+        "An exclusive artisan workshop open by appointment only"
+      ],
+      "instagramSpots": [
+        "The Golden Hour Overlook",
+        "The Royal Heritage Corridor",
+        "The Infinity Pool edge at dawn"
+      ],
+      "personalizedReason": "Your desire for adventure and luxury finds its ultimate expression here, blending raw nature with supreme comfort."
     }
   },
   {
-    id: "kerala",
-    name: "KERALA",
-    country: "INDIA",
-    image: "https://images.unsplash.com/photo-1602216056096-3b40cc0c9944?q=80&w=2000",
-    description: "Tranquil backwaters and lush green landscapes.",
-    match: "94%",
-    budget: "₹40,000",
-    duration: "6 Days",
-    wave: "M 0 500 Q 300 400 600 500 T 1200 500",
-    x: 350, y: 500,
-    story: {
-      whyVisit: "God's Own Country offers ultimate relaxation.",
-      whyFamous: "Houseboats, Ayurvedic treatments, and spice plantations.",
-      culture: "Rich traditions of Kathakali and ancient healing arts.",
-      food: ["Appam", "Fish Curry", "Sadhya"],
-      places: ["Munnar", "Alleppey", "Wayanad"],
-      weather: "28°C",
-      distance: "1500 KM",
-      travelTime: "4 Hours",
-      personalizedReason: "For a serene escape into nature's embrace."
+    "id": "andaman",
+    "name": "ANDAMAN",
+    "country": "India",
+    "continent": "Asia",
+    "type": "expected",
+    "match": 90,
+    "budget": "₹85,000",
+    "distance": "2000 KM",
+    "travelTime": "4 Hours",
+    "description": "A stunning escape into the heart of Andaman.",
+    "personalizedReason": "Perfectly suited for your mood, offering a serene yet deeply moving environment.",
+    "imageQuery": "cinematic Andaman luxury travel emotional",
+    "story": {
+      "heroTitle": "The Soul of Andaman",
+      "heroSubtitle": "Where ancient traditions meet untamed, breathtaking natural beauty in perfect harmony.",
+      "whyVisit": "Andaman is an absolute masterpiece of nature and culture. Imagine waking up to sweeping, cinematic vistas that have remained untouched by time. The air is crisp, the light is golden, and every corner whispers stories of a glorious past. This is not just a vacation; it is a profound emotional reset designed to elevate your spirit and immerse you in sheer, unadulterated luxury.",
+      "whyFamous": "Renowned globally for its striking contrasts, Andaman captures the imagination of elite travelers. Its dramatic landscapes and perfectly preserved heritage sites have made it a crown jewel of international tourism. From exclusive boutique retreats to Michelin-worthy local culinary scenes, the region offers a masterclass in combining raw geographical drama with world-class hospitality and service.",
+      "places": [
+        {
+          "name": "Andaman Landmark 1",
+          "description": "Experience the breathtaking beauty and rich history of Andaman Landmark 1. A place where timeless elegance meets unparalleled grandeur, perfectly aligned with your luxury travel aspirations."
+        },
+        {
+          "name": "Andaman Landmark 2",
+          "description": "Experience the breathtaking beauty and rich history of Andaman Landmark 2. A place where timeless elegance meets unparalleled grandeur, perfectly aligned with your luxury travel aspirations."
+        },
+        {
+          "name": "Andaman Landmark 3",
+          "description": "Experience the breathtaking beauty and rich history of Andaman Landmark 3. A place where timeless elegance meets unparalleled grandeur, perfectly aligned with your luxury travel aspirations."
+        },
+        {
+          "name": "Andaman Landmark 4",
+          "description": "Experience the breathtaking beauty and rich history of Andaman Landmark 4. A place where timeless elegance meets unparalleled grandeur, perfectly aligned with your luxury travel aspirations."
+        },
+        {
+          "name": "Andaman Landmark 5",
+          "description": "Experience the breathtaking beauty and rich history of Andaman Landmark 5. A place where timeless elegance meets unparalleled grandeur, perfectly aligned with your luxury travel aspirations."
+        }
+      ],
+      "food": [
+        {
+          "name": "Traditional Andaman Dish 1",
+          "description": "Savor the exquisite flavors of Traditional Andaman Dish 1. Crafted with traditional techniques and local ingredients, it offers a culinary journey that delights the most refined palates."
+        },
+        {
+          "name": "Traditional Andaman Dish 2",
+          "description": "Savor the exquisite flavors of Traditional Andaman Dish 2. Crafted with traditional techniques and local ingredients, it offers a culinary journey that delights the most refined palates."
+        },
+        {
+          "name": "Traditional Andaman Dish 3",
+          "description": "Savor the exquisite flavors of Traditional Andaman Dish 3. Crafted with traditional techniques and local ingredients, it offers a culinary journey that delights the most refined palates."
+        },
+        {
+          "name": "Traditional Andaman Dish 4",
+          "description": "Savor the exquisite flavors of Traditional Andaman Dish 4. Crafted with traditional techniques and local ingredients, it offers a culinary journey that delights the most refined palates."
+        },
+        {
+          "name": "Traditional Andaman Dish 5",
+          "description": "Savor the exquisite flavors of Traditional Andaman Dish 5. Crafted with traditional techniques and local ingredients, it offers a culinary journey that delights the most refined palates."
+        }
+      ],
+      "culture": "The culture here is a vibrant tapestry of indigenous rituals, high-art, and warm, unparalleled hospitality.",
+      "weather": "22°C",
+      "bestSeason": "October to March",
+      "currentSeason": "Monsoon",
+      "travelTips": [
+        "Always carry a premium pashmina for the evening chill.",
+        "Hire a private local curator for exclusive access.",
+        "Embrace the slow pace of life and travel sustainably.",
+        "Reserve fine-dining experiences well in advance.",
+        "Pack comfortable yet elegant walking attire."
+      ],
+      "hiddenGems": [
+        "The Secret Courtyard of the Old City",
+        "A hidden cascade far from the tourist trail",
+        "An exclusive artisan workshop open by appointment only"
+      ],
+      "instagramSpots": [
+        "The Golden Hour Overlook",
+        "The Royal Heritage Corridor",
+        "The Infinity Pool edge at dawn"
+      ],
+      "personalizedReason": "Your desire for adventure and luxury finds its ultimate expression here, blending raw nature with supreme comfort."
     }
   },
   {
-    id: "jaipur",
-    name: "JAIPUR",
-    country: "INDIA",
-    image: "https://images.unsplash.com/photo-1477587458883-47145ed94245?q=80&w=2000",
-    description: "Royal palaces bathed in a dusty pink glow.",
-    match: "92%",
-    budget: "₹30,000",
-    duration: "4 Days",
-    wave: "M 0 600 Q 250 500 500 600 T 1000 600 T 1500 600",
-    x: 700, y: 600,
-    story: {
-      whyVisit: "Experience the grandeur of Rajputana architecture.",
-      whyFamous: "The Pink City's forts, palaces, and vibrant bazaars.",
-      culture: "A rich tapestry of history, royal heritage, and folk arts.",
-      food: ["Dal Bati Churma", "Laal Maas", "Ghevar"],
-      places: ["Amber Fort", "Hawa Mahal", "City Palace"],
-      weather: "32°C",
-      distance: "300 KM",
-      travelTime: "1 Hour",
-      personalizedReason: "Perfect for indulging in luxury and culture."
+    "id": "rajasthan",
+    "name": "RAJASTHAN",
+    "country": "India",
+    "continent": "Asia",
+    "type": "expected",
+    "match": 99,
+    "budget": "₹85,000",
+    "distance": "2000 KM",
+    "travelTime": "4 Hours",
+    "description": "A stunning escape into the heart of Rajasthan.",
+    "personalizedReason": "Perfectly suited for your mood, offering a serene yet deeply moving environment.",
+    "imageQuery": "cinematic Rajasthan luxury travel emotional",
+    "story": {
+      "heroTitle": "The Soul of Rajasthan",
+      "heroSubtitle": "Where ancient traditions meet untamed, breathtaking natural beauty in perfect harmony.",
+      "whyVisit": "Rajasthan is an absolute masterpiece of nature and culture. Imagine waking up to sweeping, cinematic vistas that have remained untouched by time. The air is crisp, the light is golden, and every corner whispers stories of a glorious past. This is not just a vacation; it is a profound emotional reset designed to elevate your spirit and immerse you in sheer, unadulterated luxury.",
+      "whyFamous": "Renowned globally for its striking contrasts, Rajasthan captures the imagination of elite travelers. Its dramatic landscapes and perfectly preserved heritage sites have made it a crown jewel of international tourism. From exclusive boutique retreats to Michelin-worthy local culinary scenes, the region offers a masterclass in combining raw geographical drama with world-class hospitality and service.",
+      "places": [
+        {
+          "name": "Rajasthan Landmark 1",
+          "description": "Experience the breathtaking beauty and rich history of Rajasthan Landmark 1. A place where timeless elegance meets unparalleled grandeur, perfectly aligned with your luxury travel aspirations."
+        },
+        {
+          "name": "Rajasthan Landmark 2",
+          "description": "Experience the breathtaking beauty and rich history of Rajasthan Landmark 2. A place where timeless elegance meets unparalleled grandeur, perfectly aligned with your luxury travel aspirations."
+        },
+        {
+          "name": "Rajasthan Landmark 3",
+          "description": "Experience the breathtaking beauty and rich history of Rajasthan Landmark 3. A place where timeless elegance meets unparalleled grandeur, perfectly aligned with your luxury travel aspirations."
+        },
+        {
+          "name": "Rajasthan Landmark 4",
+          "description": "Experience the breathtaking beauty and rich history of Rajasthan Landmark 4. A place where timeless elegance meets unparalleled grandeur, perfectly aligned with your luxury travel aspirations."
+        },
+        {
+          "name": "Rajasthan Landmark 5",
+          "description": "Experience the breathtaking beauty and rich history of Rajasthan Landmark 5. A place where timeless elegance meets unparalleled grandeur, perfectly aligned with your luxury travel aspirations."
+        }
+      ],
+      "food": [
+        {
+          "name": "Traditional Rajasthan Dish 1",
+          "description": "Savor the exquisite flavors of Traditional Rajasthan Dish 1. Crafted with traditional techniques and local ingredients, it offers a culinary journey that delights the most refined palates."
+        },
+        {
+          "name": "Traditional Rajasthan Dish 2",
+          "description": "Savor the exquisite flavors of Traditional Rajasthan Dish 2. Crafted with traditional techniques and local ingredients, it offers a culinary journey that delights the most refined palates."
+        },
+        {
+          "name": "Traditional Rajasthan Dish 3",
+          "description": "Savor the exquisite flavors of Traditional Rajasthan Dish 3. Crafted with traditional techniques and local ingredients, it offers a culinary journey that delights the most refined palates."
+        },
+        {
+          "name": "Traditional Rajasthan Dish 4",
+          "description": "Savor the exquisite flavors of Traditional Rajasthan Dish 4. Crafted with traditional techniques and local ingredients, it offers a culinary journey that delights the most refined palates."
+        },
+        {
+          "name": "Traditional Rajasthan Dish 5",
+          "description": "Savor the exquisite flavors of Traditional Rajasthan Dish 5. Crafted with traditional techniques and local ingredients, it offers a culinary journey that delights the most refined palates."
+        }
+      ],
+      "culture": "The culture here is a vibrant tapestry of indigenous rituals, high-art, and warm, unparalleled hospitality.",
+      "weather": "22°C",
+      "bestSeason": "October to March",
+      "currentSeason": "Monsoon",
+      "travelTips": [
+        "Always carry a premium pashmina for the evening chill.",
+        "Hire a private local curator for exclusive access.",
+        "Embrace the slow pace of life and travel sustainably.",
+        "Reserve fine-dining experiences well in advance.",
+        "Pack comfortable yet elegant walking attire."
+      ],
+      "hiddenGems": [
+        "The Secret Courtyard of the Old City",
+        "A hidden cascade far from the tourist trail",
+        "An exclusive artisan workshop open by appointment only"
+      ],
+      "instagramSpots": [
+        "The Golden Hour Overlook",
+        "The Royal Heritage Corridor",
+        "The Infinity Pool edge at dawn"
+      ],
+      "personalizedReason": "Your desire for adventure and luxury finds its ultimate expression here, blending raw nature with supreme comfort."
     }
   },
   {
-    id: "andaman",
-    name: "ANDAMAN",
-    country: "INDIA",
-    image: "https://images.unsplash.com/photo-1589136777351-fdc9c9cb164f?q=80&w=2000",
-    description: "Pristine white beaches and crystal-clear waters.",
-    match: "96%",
-    budget: "₹60,000",
-    duration: "7 Days",
-    wave: "M 0 100 Q 200 200 400 100 T 800 100 T 1200 100",
-    x: 800, y: 150,
-    story: {
-      whyVisit: "Untouched coral reefs and isolated tropical bliss.",
-      whyFamous: "World-class scuba diving and historic cellular jail.",
-      culture: "A melting pot of mainland cultures in a remote setting.",
-      food: ["Seafood", "Coconut Curry", "Tropical Fruits"],
-      places: ["Radhanagar Beach", "Havelock Island", "Neil Island"],
-      weather: "29°C",
-      distance: "2000 KM",
-      travelTime: "5 Hours",
-      personalizedReason: "The ultimate tropical escape within India."
+    "id": "coorg",
+    "name": "COORG",
+    "country": "India",
+    "continent": "Asia",
+    "type": "expected",
+    "match": 92,
+    "budget": "₹85,000",
+    "distance": "2000 KM",
+    "travelTime": "4 Hours",
+    "description": "A stunning escape into the heart of Coorg.",
+    "personalizedReason": "Perfectly suited for your mood, offering a serene yet deeply moving environment.",
+    "imageQuery": "cinematic Coorg luxury travel emotional",
+    "story": {
+      "heroTitle": "The Soul of Coorg",
+      "heroSubtitle": "Where ancient traditions meet untamed, breathtaking natural beauty in perfect harmony.",
+      "whyVisit": "Coorg is an absolute masterpiece of nature and culture. Imagine waking up to sweeping, cinematic vistas that have remained untouched by time. The air is crisp, the light is golden, and every corner whispers stories of a glorious past. This is not just a vacation; it is a profound emotional reset designed to elevate your spirit and immerse you in sheer, unadulterated luxury.",
+      "whyFamous": "Renowned globally for its striking contrasts, Coorg captures the imagination of elite travelers. Its dramatic landscapes and perfectly preserved heritage sites have made it a crown jewel of international tourism. From exclusive boutique retreats to Michelin-worthy local culinary scenes, the region offers a masterclass in combining raw geographical drama with world-class hospitality and service.",
+      "places": [
+        {
+          "name": "Coorg Landmark 1",
+          "description": "Experience the breathtaking beauty and rich history of Coorg Landmark 1. A place where timeless elegance meets unparalleled grandeur, perfectly aligned with your luxury travel aspirations."
+        },
+        {
+          "name": "Coorg Landmark 2",
+          "description": "Experience the breathtaking beauty and rich history of Coorg Landmark 2. A place where timeless elegance meets unparalleled grandeur, perfectly aligned with your luxury travel aspirations."
+        },
+        {
+          "name": "Coorg Landmark 3",
+          "description": "Experience the breathtaking beauty and rich history of Coorg Landmark 3. A place where timeless elegance meets unparalleled grandeur, perfectly aligned with your luxury travel aspirations."
+        },
+        {
+          "name": "Coorg Landmark 4",
+          "description": "Experience the breathtaking beauty and rich history of Coorg Landmark 4. A place where timeless elegance meets unparalleled grandeur, perfectly aligned with your luxury travel aspirations."
+        },
+        {
+          "name": "Coorg Landmark 5",
+          "description": "Experience the breathtaking beauty and rich history of Coorg Landmark 5. A place where timeless elegance meets unparalleled grandeur, perfectly aligned with your luxury travel aspirations."
+        }
+      ],
+      "food": [
+        {
+          "name": "Traditional Coorg Dish 1",
+          "description": "Savor the exquisite flavors of Traditional Coorg Dish 1. Crafted with traditional techniques and local ingredients, it offers a culinary journey that delights the most refined palates."
+        },
+        {
+          "name": "Traditional Coorg Dish 2",
+          "description": "Savor the exquisite flavors of Traditional Coorg Dish 2. Crafted with traditional techniques and local ingredients, it offers a culinary journey that delights the most refined palates."
+        },
+        {
+          "name": "Traditional Coorg Dish 3",
+          "description": "Savor the exquisite flavors of Traditional Coorg Dish 3. Crafted with traditional techniques and local ingredients, it offers a culinary journey that delights the most refined palates."
+        },
+        {
+          "name": "Traditional Coorg Dish 4",
+          "description": "Savor the exquisite flavors of Traditional Coorg Dish 4. Crafted with traditional techniques and local ingredients, it offers a culinary journey that delights the most refined palates."
+        },
+        {
+          "name": "Traditional Coorg Dish 5",
+          "description": "Savor the exquisite flavors of Traditional Coorg Dish 5. Crafted with traditional techniques and local ingredients, it offers a culinary journey that delights the most refined palates."
+        }
+      ],
+      "culture": "The culture here is a vibrant tapestry of indigenous rituals, high-art, and warm, unparalleled hospitality.",
+      "weather": "22°C",
+      "bestSeason": "October to March",
+      "currentSeason": "Monsoon",
+      "travelTips": [
+        "Always carry a premium pashmina for the evening chill.",
+        "Hire a private local curator for exclusive access.",
+        "Embrace the slow pace of life and travel sustainably.",
+        "Reserve fine-dining experiences well in advance.",
+        "Pack comfortable yet elegant walking attire."
+      ],
+      "hiddenGems": [
+        "The Secret Courtyard of the Old City",
+        "A hidden cascade far from the tourist trail",
+        "An exclusive artisan workshop open by appointment only"
+      ],
+      "instagramSpots": [
+        "The Golden Hour Overlook",
+        "The Royal Heritage Corridor",
+        "The Infinity Pool edge at dawn"
+      ],
+      "personalizedReason": "Your desire for adventure and luxury finds its ultimate expression here, blending raw nature with supreme comfort."
+    }
+  }
+];
+export const ALL_DESTINATIONS_INTL: Destination[] = [
+  {
+    "id": "iceland",
+    "name": "ICELAND",
+    "country": "Iceland",
+    "continent": "Global",
+    "type": "expected",
+    "match": 96,
+    "budget": "₹250,000",
+    "distance": "6000 KM",
+    "travelTime": "12 Hours",
+    "description": "A stunning escape into the heart of Iceland.",
+    "personalizedReason": "Perfectly suited for your mood, offering a serene yet deeply moving environment.",
+    "imageQuery": "cinematic Iceland luxury travel emotional",
+    "story": {
+      "heroTitle": "The Soul of Iceland",
+      "heroSubtitle": "Where ancient traditions meet untamed, breathtaking natural beauty in perfect harmony.",
+      "whyVisit": "Iceland is an absolute masterpiece of nature and culture. Imagine waking up to sweeping, cinematic vistas that have remained untouched by time. The air is crisp, the light is golden, and every corner whispers stories of a glorious past. This is not just a vacation; it is a profound emotional reset designed to elevate your spirit and immerse you in sheer, unadulterated luxury.",
+      "whyFamous": "Renowned globally for its striking contrasts, Iceland captures the imagination of elite travelers. Its dramatic landscapes and perfectly preserved heritage sites have made it a crown jewel of international tourism. From exclusive boutique retreats to Michelin-worthy local culinary scenes, the region offers a masterclass in combining raw geographical drama with world-class hospitality and service.",
+      "places": [
+        {
+          "name": "Iceland Landmark 1",
+          "description": "Experience the breathtaking beauty and rich history of Iceland Landmark 1. A place where timeless elegance meets unparalleled grandeur, perfectly aligned with your luxury travel aspirations."
+        },
+        {
+          "name": "Iceland Landmark 2",
+          "description": "Experience the breathtaking beauty and rich history of Iceland Landmark 2. A place where timeless elegance meets unparalleled grandeur, perfectly aligned with your luxury travel aspirations."
+        },
+        {
+          "name": "Iceland Landmark 3",
+          "description": "Experience the breathtaking beauty and rich history of Iceland Landmark 3. A place where timeless elegance meets unparalleled grandeur, perfectly aligned with your luxury travel aspirations."
+        },
+        {
+          "name": "Iceland Landmark 4",
+          "description": "Experience the breathtaking beauty and rich history of Iceland Landmark 4. A place where timeless elegance meets unparalleled grandeur, perfectly aligned with your luxury travel aspirations."
+        },
+        {
+          "name": "Iceland Landmark 5",
+          "description": "Experience the breathtaking beauty and rich history of Iceland Landmark 5. A place where timeless elegance meets unparalleled grandeur, perfectly aligned with your luxury travel aspirations."
+        }
+      ],
+      "food": [
+        {
+          "name": "Traditional Iceland Dish 1",
+          "description": "Savor the exquisite flavors of Traditional Iceland Dish 1. Crafted with traditional techniques and local ingredients, it offers a culinary journey that delights the most refined palates."
+        },
+        {
+          "name": "Traditional Iceland Dish 2",
+          "description": "Savor the exquisite flavors of Traditional Iceland Dish 2. Crafted with traditional techniques and local ingredients, it offers a culinary journey that delights the most refined palates."
+        },
+        {
+          "name": "Traditional Iceland Dish 3",
+          "description": "Savor the exquisite flavors of Traditional Iceland Dish 3. Crafted with traditional techniques and local ingredients, it offers a culinary journey that delights the most refined palates."
+        },
+        {
+          "name": "Traditional Iceland Dish 4",
+          "description": "Savor the exquisite flavors of Traditional Iceland Dish 4. Crafted with traditional techniques and local ingredients, it offers a culinary journey that delights the most refined palates."
+        },
+        {
+          "name": "Traditional Iceland Dish 5",
+          "description": "Savor the exquisite flavors of Traditional Iceland Dish 5. Crafted with traditional techniques and local ingredients, it offers a culinary journey that delights the most refined palates."
+        }
+      ],
+      "culture": "The culture here is a vibrant tapestry of indigenous rituals, high-art, and warm, unparalleled hospitality.",
+      "weather": "15°C",
+      "bestSeason": "May to September",
+      "currentSeason": "Summer",
+      "travelTips": [
+        "Always carry a premium scarf for the evening chill.",
+        "Hire a private local curator for exclusive access.",
+        "Embrace the slow pace of life and travel sustainably.",
+        "Reserve fine-dining experiences well in advance.",
+        "Pack comfortable yet elegant walking attire."
+      ],
+      "hiddenGems": [
+        "The Secret Courtyard of the Old City",
+        "A hidden cascade far from the tourist trail",
+        "An exclusive artisan workshop open by appointment only"
+      ],
+      "instagramSpots": [
+        "The Golden Hour Overlook",
+        "The Royal Heritage Corridor",
+        "The Infinity Pool edge at dawn"
+      ],
+      "personalizedReason": "Your desire for adventure and luxury finds its ultimate expression here, blending raw nature with supreme comfort."
     }
   },
   {
-    id: "santorini",
-    name: "SANTORINI",
-    country: "GREECE",
-    image: "https://images.unsplash.com/photo-1570077188670-e3a8d69ac5f1?q=80&w=2000",
-    description: "Whitewashed dreams overlooking a sapphire sea.",
-    match: "99%",
-    budget: "₹120,000",
-    duration: "6 Days",
-    wave: "M 0 200 Q 250 100 500 200 T 1000 200 T 1500 200",
-    x: 650, y: 200,
-    story: {
-      whyVisit: "The iconic caldera views offer the most romantic sunsets on Earth.",
-      whyFamous: "Architecture that seamlessly cascades down volcanic cliffs.",
-      culture: "A relaxed, elegant Mediterranean lifestyle celebrating history and sea.",
-      food: ["Fresh Seafood", "Fava", "Assyrtiko Wine"],
-      places: ["Oia", "Fira", "Red Beach"],
-      weather: "24°C",
-      distance: "5200 KM",
-      travelTime: "8 Hours",
-      personalizedReason: "Aesthetic perfection for your luxury getaway."
+    "id": "kyoto",
+    "name": "KYOTO",
+    "country": "Japan",
+    "continent": "Global",
+    "type": "expected",
+    "match": 93,
+    "budget": "₹250,000",
+    "distance": "6000 KM",
+    "travelTime": "12 Hours",
+    "description": "A stunning escape into the heart of Kyoto.",
+    "personalizedReason": "Perfectly suited for your mood, offering a serene yet deeply moving environment.",
+    "imageQuery": "cinematic Kyoto luxury travel emotional",
+    "story": {
+      "heroTitle": "The Soul of Kyoto",
+      "heroSubtitle": "Where ancient traditions meet untamed, breathtaking natural beauty in perfect harmony.",
+      "whyVisit": "Kyoto is an absolute masterpiece of nature and culture. Imagine waking up to sweeping, cinematic vistas that have remained untouched by time. The air is crisp, the light is golden, and every corner whispers stories of a glorious past. This is not just a vacation; it is a profound emotional reset designed to elevate your spirit and immerse you in sheer, unadulterated luxury.",
+      "whyFamous": "Renowned globally for its striking contrasts, Kyoto captures the imagination of elite travelers. Its dramatic landscapes and perfectly preserved heritage sites have made it a crown jewel of international tourism. From exclusive boutique retreats to Michelin-worthy local culinary scenes, the region offers a masterclass in combining raw geographical drama with world-class hospitality and service.",
+      "places": [
+        {
+          "name": "Kyoto Landmark 1",
+          "description": "Experience the breathtaking beauty and rich history of Kyoto Landmark 1. A place where timeless elegance meets unparalleled grandeur, perfectly aligned with your luxury travel aspirations."
+        },
+        {
+          "name": "Kyoto Landmark 2",
+          "description": "Experience the breathtaking beauty and rich history of Kyoto Landmark 2. A place where timeless elegance meets unparalleled grandeur, perfectly aligned with your luxury travel aspirations."
+        },
+        {
+          "name": "Kyoto Landmark 3",
+          "description": "Experience the breathtaking beauty and rich history of Kyoto Landmark 3. A place where timeless elegance meets unparalleled grandeur, perfectly aligned with your luxury travel aspirations."
+        },
+        {
+          "name": "Kyoto Landmark 4",
+          "description": "Experience the breathtaking beauty and rich history of Kyoto Landmark 4. A place where timeless elegance meets unparalleled grandeur, perfectly aligned with your luxury travel aspirations."
+        },
+        {
+          "name": "Kyoto Landmark 5",
+          "description": "Experience the breathtaking beauty and rich history of Kyoto Landmark 5. A place where timeless elegance meets unparalleled grandeur, perfectly aligned with your luxury travel aspirations."
+        }
+      ],
+      "food": [
+        {
+          "name": "Traditional Kyoto Dish 1",
+          "description": "Savor the exquisite flavors of Traditional Kyoto Dish 1. Crafted with traditional techniques and local ingredients, it offers a culinary journey that delights the most refined palates."
+        },
+        {
+          "name": "Traditional Kyoto Dish 2",
+          "description": "Savor the exquisite flavors of Traditional Kyoto Dish 2. Crafted with traditional techniques and local ingredients, it offers a culinary journey that delights the most refined palates."
+        },
+        {
+          "name": "Traditional Kyoto Dish 3",
+          "description": "Savor the exquisite flavors of Traditional Kyoto Dish 3. Crafted with traditional techniques and local ingredients, it offers a culinary journey that delights the most refined palates."
+        },
+        {
+          "name": "Traditional Kyoto Dish 4",
+          "description": "Savor the exquisite flavors of Traditional Kyoto Dish 4. Crafted with traditional techniques and local ingredients, it offers a culinary journey that delights the most refined palates."
+        },
+        {
+          "name": "Traditional Kyoto Dish 5",
+          "description": "Savor the exquisite flavors of Traditional Kyoto Dish 5. Crafted with traditional techniques and local ingredients, it offers a culinary journey that delights the most refined palates."
+        }
+      ],
+      "culture": "The culture here is a vibrant tapestry of indigenous rituals, high-art, and warm, unparalleled hospitality.",
+      "weather": "15°C",
+      "bestSeason": "May to September",
+      "currentSeason": "Summer",
+      "travelTips": [
+        "Always carry a premium scarf for the evening chill.",
+        "Hire a private local curator for exclusive access.",
+        "Embrace the slow pace of life and travel sustainably.",
+        "Reserve fine-dining experiences well in advance.",
+        "Pack comfortable yet elegant walking attire."
+      ],
+      "hiddenGems": [
+        "The Secret Courtyard of the Old City",
+        "A hidden cascade far from the tourist trail",
+        "An exclusive artisan workshop open by appointment only"
+      ],
+      "instagramSpots": [
+        "The Golden Hour Overlook",
+        "The Royal Heritage Corridor",
+        "The Infinity Pool edge at dawn"
+      ],
+      "personalizedReason": "Your desire for adventure and luxury finds its ultimate expression here, blending raw nature with supreme comfort."
+    }
+  },
+  {
+    "id": "norway",
+    "name": "NORWAY",
+    "country": "Norway",
+    "continent": "Global",
+    "type": "expected",
+    "match": 95,
+    "budget": "₹250,000",
+    "distance": "6000 KM",
+    "travelTime": "12 Hours",
+    "description": "A stunning escape into the heart of Norway.",
+    "personalizedReason": "Perfectly suited for your mood, offering a serene yet deeply moving environment.",
+    "imageQuery": "cinematic Norway luxury travel emotional",
+    "story": {
+      "heroTitle": "The Soul of Norway",
+      "heroSubtitle": "Where ancient traditions meet untamed, breathtaking natural beauty in perfect harmony.",
+      "whyVisit": "Norway is an absolute masterpiece of nature and culture. Imagine waking up to sweeping, cinematic vistas that have remained untouched by time. The air is crisp, the light is golden, and every corner whispers stories of a glorious past. This is not just a vacation; it is a profound emotional reset designed to elevate your spirit and immerse you in sheer, unadulterated luxury.",
+      "whyFamous": "Renowned globally for its striking contrasts, Norway captures the imagination of elite travelers. Its dramatic landscapes and perfectly preserved heritage sites have made it a crown jewel of international tourism. From exclusive boutique retreats to Michelin-worthy local culinary scenes, the region offers a masterclass in combining raw geographical drama with world-class hospitality and service.",
+      "places": [
+        {
+          "name": "Norway Landmark 1",
+          "description": "Experience the breathtaking beauty and rich history of Norway Landmark 1. A place where timeless elegance meets unparalleled grandeur, perfectly aligned with your luxury travel aspirations."
+        },
+        {
+          "name": "Norway Landmark 2",
+          "description": "Experience the breathtaking beauty and rich history of Norway Landmark 2. A place where timeless elegance meets unparalleled grandeur, perfectly aligned with your luxury travel aspirations."
+        },
+        {
+          "name": "Norway Landmark 3",
+          "description": "Experience the breathtaking beauty and rich history of Norway Landmark 3. A place where timeless elegance meets unparalleled grandeur, perfectly aligned with your luxury travel aspirations."
+        },
+        {
+          "name": "Norway Landmark 4",
+          "description": "Experience the breathtaking beauty and rich history of Norway Landmark 4. A place where timeless elegance meets unparalleled grandeur, perfectly aligned with your luxury travel aspirations."
+        },
+        {
+          "name": "Norway Landmark 5",
+          "description": "Experience the breathtaking beauty and rich history of Norway Landmark 5. A place where timeless elegance meets unparalleled grandeur, perfectly aligned with your luxury travel aspirations."
+        }
+      ],
+      "food": [
+        {
+          "name": "Traditional Norway Dish 1",
+          "description": "Savor the exquisite flavors of Traditional Norway Dish 1. Crafted with traditional techniques and local ingredients, it offers a culinary journey that delights the most refined palates."
+        },
+        {
+          "name": "Traditional Norway Dish 2",
+          "description": "Savor the exquisite flavors of Traditional Norway Dish 2. Crafted with traditional techniques and local ingredients, it offers a culinary journey that delights the most refined palates."
+        },
+        {
+          "name": "Traditional Norway Dish 3",
+          "description": "Savor the exquisite flavors of Traditional Norway Dish 3. Crafted with traditional techniques and local ingredients, it offers a culinary journey that delights the most refined palates."
+        },
+        {
+          "name": "Traditional Norway Dish 4",
+          "description": "Savor the exquisite flavors of Traditional Norway Dish 4. Crafted with traditional techniques and local ingredients, it offers a culinary journey that delights the most refined palates."
+        },
+        {
+          "name": "Traditional Norway Dish 5",
+          "description": "Savor the exquisite flavors of Traditional Norway Dish 5. Crafted with traditional techniques and local ingredients, it offers a culinary journey that delights the most refined palates."
+        }
+      ],
+      "culture": "The culture here is a vibrant tapestry of indigenous rituals, high-art, and warm, unparalleled hospitality.",
+      "weather": "15°C",
+      "bestSeason": "May to September",
+      "currentSeason": "Summer",
+      "travelTips": [
+        "Always carry a premium scarf for the evening chill.",
+        "Hire a private local curator for exclusive access.",
+        "Embrace the slow pace of life and travel sustainably.",
+        "Reserve fine-dining experiences well in advance.",
+        "Pack comfortable yet elegant walking attire."
+      ],
+      "hiddenGems": [
+        "The Secret Courtyard of the Old City",
+        "A hidden cascade far from the tourist trail",
+        "An exclusive artisan workshop open by appointment only"
+      ],
+      "instagramSpots": [
+        "The Golden Hour Overlook",
+        "The Royal Heritage Corridor",
+        "The Infinity Pool edge at dawn"
+      ],
+      "personalizedReason": "Your desire for adventure and luxury finds its ultimate expression here, blending raw nature with supreme comfort."
+    }
+  },
+  {
+    "id": "switzerland",
+    "name": "SWITZERLAND",
+    "country": "Switzerland",
+    "continent": "Global",
+    "type": "expected",
+    "match": 98,
+    "budget": "₹250,000",
+    "distance": "6000 KM",
+    "travelTime": "12 Hours",
+    "description": "A stunning escape into the heart of Switzerland.",
+    "personalizedReason": "Perfectly suited for your mood, offering a serene yet deeply moving environment.",
+    "imageQuery": "cinematic Switzerland luxury travel emotional",
+    "story": {
+      "heroTitle": "The Soul of Switzerland",
+      "heroSubtitle": "Where ancient traditions meet untamed, breathtaking natural beauty in perfect harmony.",
+      "whyVisit": "Switzerland is an absolute masterpiece of nature and culture. Imagine waking up to sweeping, cinematic vistas that have remained untouched by time. The air is crisp, the light is golden, and every corner whispers stories of a glorious past. This is not just a vacation; it is a profound emotional reset designed to elevate your spirit and immerse you in sheer, unadulterated luxury.",
+      "whyFamous": "Renowned globally for its striking contrasts, Switzerland captures the imagination of elite travelers. Its dramatic landscapes and perfectly preserved heritage sites have made it a crown jewel of international tourism. From exclusive boutique retreats to Michelin-worthy local culinary scenes, the region offers a masterclass in combining raw geographical drama with world-class hospitality and service.",
+      "places": [
+        {
+          "name": "Switzerland Landmark 1",
+          "description": "Experience the breathtaking beauty and rich history of Switzerland Landmark 1. A place where timeless elegance meets unparalleled grandeur, perfectly aligned with your luxury travel aspirations."
+        },
+        {
+          "name": "Switzerland Landmark 2",
+          "description": "Experience the breathtaking beauty and rich history of Switzerland Landmark 2. A place where timeless elegance meets unparalleled grandeur, perfectly aligned with your luxury travel aspirations."
+        },
+        {
+          "name": "Switzerland Landmark 3",
+          "description": "Experience the breathtaking beauty and rich history of Switzerland Landmark 3. A place where timeless elegance meets unparalleled grandeur, perfectly aligned with your luxury travel aspirations."
+        },
+        {
+          "name": "Switzerland Landmark 4",
+          "description": "Experience the breathtaking beauty and rich history of Switzerland Landmark 4. A place where timeless elegance meets unparalleled grandeur, perfectly aligned with your luxury travel aspirations."
+        },
+        {
+          "name": "Switzerland Landmark 5",
+          "description": "Experience the breathtaking beauty and rich history of Switzerland Landmark 5. A place where timeless elegance meets unparalleled grandeur, perfectly aligned with your luxury travel aspirations."
+        }
+      ],
+      "food": [
+        {
+          "name": "Traditional Switzerland Dish 1",
+          "description": "Savor the exquisite flavors of Traditional Switzerland Dish 1. Crafted with traditional techniques and local ingredients, it offers a culinary journey that delights the most refined palates."
+        },
+        {
+          "name": "Traditional Switzerland Dish 2",
+          "description": "Savor the exquisite flavors of Traditional Switzerland Dish 2. Crafted with traditional techniques and local ingredients, it offers a culinary journey that delights the most refined palates."
+        },
+        {
+          "name": "Traditional Switzerland Dish 3",
+          "description": "Savor the exquisite flavors of Traditional Switzerland Dish 3. Crafted with traditional techniques and local ingredients, it offers a culinary journey that delights the most refined palates."
+        },
+        {
+          "name": "Traditional Switzerland Dish 4",
+          "description": "Savor the exquisite flavors of Traditional Switzerland Dish 4. Crafted with traditional techniques and local ingredients, it offers a culinary journey that delights the most refined palates."
+        },
+        {
+          "name": "Traditional Switzerland Dish 5",
+          "description": "Savor the exquisite flavors of Traditional Switzerland Dish 5. Crafted with traditional techniques and local ingredients, it offers a culinary journey that delights the most refined palates."
+        }
+      ],
+      "culture": "The culture here is a vibrant tapestry of indigenous rituals, high-art, and warm, unparalleled hospitality.",
+      "weather": "15°C",
+      "bestSeason": "May to September",
+      "currentSeason": "Summer",
+      "travelTips": [
+        "Always carry a premium scarf for the evening chill.",
+        "Hire a private local curator for exclusive access.",
+        "Embrace the slow pace of life and travel sustainably.",
+        "Reserve fine-dining experiences well in advance.",
+        "Pack comfortable yet elegant walking attire."
+      ],
+      "hiddenGems": [
+        "The Secret Courtyard of the Old City",
+        "A hidden cascade far from the tourist trail",
+        "An exclusive artisan workshop open by appointment only"
+      ],
+      "instagramSpots": [
+        "The Golden Hour Overlook",
+        "The Royal Heritage Corridor",
+        "The Infinity Pool edge at dawn"
+      ],
+      "personalizedReason": "Your desire for adventure and luxury finds its ultimate expression here, blending raw nature with supreme comfort."
+    }
+  },
+  {
+    "id": "peru",
+    "name": "PERU",
+    "country": "Peru",
+    "continent": "Global",
+    "type": "expected",
+    "match": 91,
+    "budget": "₹250,000",
+    "distance": "6000 KM",
+    "travelTime": "12 Hours",
+    "description": "A stunning escape into the heart of Peru.",
+    "personalizedReason": "Perfectly suited for your mood, offering a serene yet deeply moving environment.",
+    "imageQuery": "cinematic Peru luxury travel emotional",
+    "story": {
+      "heroTitle": "The Soul of Peru",
+      "heroSubtitle": "Where ancient traditions meet untamed, breathtaking natural beauty in perfect harmony.",
+      "whyVisit": "Peru is an absolute masterpiece of nature and culture. Imagine waking up to sweeping, cinematic vistas that have remained untouched by time. The air is crisp, the light is golden, and every corner whispers stories of a glorious past. This is not just a vacation; it is a profound emotional reset designed to elevate your spirit and immerse you in sheer, unadulterated luxury.",
+      "whyFamous": "Renowned globally for its striking contrasts, Peru captures the imagination of elite travelers. Its dramatic landscapes and perfectly preserved heritage sites have made it a crown jewel of international tourism. From exclusive boutique retreats to Michelin-worthy local culinary scenes, the region offers a masterclass in combining raw geographical drama with world-class hospitality and service.",
+      "places": [
+        {
+          "name": "Peru Landmark 1",
+          "description": "Experience the breathtaking beauty and rich history of Peru Landmark 1. A place where timeless elegance meets unparalleled grandeur, perfectly aligned with your luxury travel aspirations."
+        },
+        {
+          "name": "Peru Landmark 2",
+          "description": "Experience the breathtaking beauty and rich history of Peru Landmark 2. A place where timeless elegance meets unparalleled grandeur, perfectly aligned with your luxury travel aspirations."
+        },
+        {
+          "name": "Peru Landmark 3",
+          "description": "Experience the breathtaking beauty and rich history of Peru Landmark 3. A place where timeless elegance meets unparalleled grandeur, perfectly aligned with your luxury travel aspirations."
+        },
+        {
+          "name": "Peru Landmark 4",
+          "description": "Experience the breathtaking beauty and rich history of Peru Landmark 4. A place where timeless elegance meets unparalleled grandeur, perfectly aligned with your luxury travel aspirations."
+        },
+        {
+          "name": "Peru Landmark 5",
+          "description": "Experience the breathtaking beauty and rich history of Peru Landmark 5. A place where timeless elegance meets unparalleled grandeur, perfectly aligned with your luxury travel aspirations."
+        }
+      ],
+      "food": [
+        {
+          "name": "Traditional Peru Dish 1",
+          "description": "Savor the exquisite flavors of Traditional Peru Dish 1. Crafted with traditional techniques and local ingredients, it offers a culinary journey that delights the most refined palates."
+        },
+        {
+          "name": "Traditional Peru Dish 2",
+          "description": "Savor the exquisite flavors of Traditional Peru Dish 2. Crafted with traditional techniques and local ingredients, it offers a culinary journey that delights the most refined palates."
+        },
+        {
+          "name": "Traditional Peru Dish 3",
+          "description": "Savor the exquisite flavors of Traditional Peru Dish 3. Crafted with traditional techniques and local ingredients, it offers a culinary journey that delights the most refined palates."
+        },
+        {
+          "name": "Traditional Peru Dish 4",
+          "description": "Savor the exquisite flavors of Traditional Peru Dish 4. Crafted with traditional techniques and local ingredients, it offers a culinary journey that delights the most refined palates."
+        },
+        {
+          "name": "Traditional Peru Dish 5",
+          "description": "Savor the exquisite flavors of Traditional Peru Dish 5. Crafted with traditional techniques and local ingredients, it offers a culinary journey that delights the most refined palates."
+        }
+      ],
+      "culture": "The culture here is a vibrant tapestry of indigenous rituals, high-art, and warm, unparalleled hospitality.",
+      "weather": "15°C",
+      "bestSeason": "May to September",
+      "currentSeason": "Summer",
+      "travelTips": [
+        "Always carry a premium scarf for the evening chill.",
+        "Hire a private local curator for exclusive access.",
+        "Embrace the slow pace of life and travel sustainably.",
+        "Reserve fine-dining experiences well in advance.",
+        "Pack comfortable yet elegant walking attire."
+      ],
+      "hiddenGems": [
+        "The Secret Courtyard of the Old City",
+        "A hidden cascade far from the tourist trail",
+        "An exclusive artisan workshop open by appointment only"
+      ],
+      "instagramSpots": [
+        "The Golden Hour Overlook",
+        "The Royal Heritage Corridor",
+        "The Infinity Pool edge at dawn"
+      ],
+      "personalizedReason": "Your desire for adventure and luxury finds its ultimate expression here, blending raw nature with supreme comfort."
+    }
+  },
+  {
+    "id": "bali",
+    "name": "BALI",
+    "country": "Indonesia",
+    "continent": "Global",
+    "type": "expected",
+    "match": 92,
+    "budget": "₹250,000",
+    "distance": "6000 KM",
+    "travelTime": "12 Hours",
+    "description": "A stunning escape into the heart of Bali.",
+    "personalizedReason": "Perfectly suited for your mood, offering a serene yet deeply moving environment.",
+    "imageQuery": "cinematic Bali luxury travel emotional",
+    "story": {
+      "heroTitle": "The Soul of Bali",
+      "heroSubtitle": "Where ancient traditions meet untamed, breathtaking natural beauty in perfect harmony.",
+      "whyVisit": "Bali is an absolute masterpiece of nature and culture. Imagine waking up to sweeping, cinematic vistas that have remained untouched by time. The air is crisp, the light is golden, and every corner whispers stories of a glorious past. This is not just a vacation; it is a profound emotional reset designed to elevate your spirit and immerse you in sheer, unadulterated luxury.",
+      "whyFamous": "Renowned globally for its striking contrasts, Bali captures the imagination of elite travelers. Its dramatic landscapes and perfectly preserved heritage sites have made it a crown jewel of international tourism. From exclusive boutique retreats to Michelin-worthy local culinary scenes, the region offers a masterclass in combining raw geographical drama with world-class hospitality and service.",
+      "places": [
+        {
+          "name": "Bali Landmark 1",
+          "description": "Experience the breathtaking beauty and rich history of Bali Landmark 1. A place where timeless elegance meets unparalleled grandeur, perfectly aligned with your luxury travel aspirations."
+        },
+        {
+          "name": "Bali Landmark 2",
+          "description": "Experience the breathtaking beauty and rich history of Bali Landmark 2. A place where timeless elegance meets unparalleled grandeur, perfectly aligned with your luxury travel aspirations."
+        },
+        {
+          "name": "Bali Landmark 3",
+          "description": "Experience the breathtaking beauty and rich history of Bali Landmark 3. A place where timeless elegance meets unparalleled grandeur, perfectly aligned with your luxury travel aspirations."
+        },
+        {
+          "name": "Bali Landmark 4",
+          "description": "Experience the breathtaking beauty and rich history of Bali Landmark 4. A place where timeless elegance meets unparalleled grandeur, perfectly aligned with your luxury travel aspirations."
+        },
+        {
+          "name": "Bali Landmark 5",
+          "description": "Experience the breathtaking beauty and rich history of Bali Landmark 5. A place where timeless elegance meets unparalleled grandeur, perfectly aligned with your luxury travel aspirations."
+        }
+      ],
+      "food": [
+        {
+          "name": "Traditional Bali Dish 1",
+          "description": "Savor the exquisite flavors of Traditional Bali Dish 1. Crafted with traditional techniques and local ingredients, it offers a culinary journey that delights the most refined palates."
+        },
+        {
+          "name": "Traditional Bali Dish 2",
+          "description": "Savor the exquisite flavors of Traditional Bali Dish 2. Crafted with traditional techniques and local ingredients, it offers a culinary journey that delights the most refined palates."
+        },
+        {
+          "name": "Traditional Bali Dish 3",
+          "description": "Savor the exquisite flavors of Traditional Bali Dish 3. Crafted with traditional techniques and local ingredients, it offers a culinary journey that delights the most refined palates."
+        },
+        {
+          "name": "Traditional Bali Dish 4",
+          "description": "Savor the exquisite flavors of Traditional Bali Dish 4. Crafted with traditional techniques and local ingredients, it offers a culinary journey that delights the most refined palates."
+        },
+        {
+          "name": "Traditional Bali Dish 5",
+          "description": "Savor the exquisite flavors of Traditional Bali Dish 5. Crafted with traditional techniques and local ingredients, it offers a culinary journey that delights the most refined palates."
+        }
+      ],
+      "culture": "The culture here is a vibrant tapestry of indigenous rituals, high-art, and warm, unparalleled hospitality.",
+      "weather": "15°C",
+      "bestSeason": "May to September",
+      "currentSeason": "Summer",
+      "travelTips": [
+        "Always carry a premium scarf for the evening chill.",
+        "Hire a private local curator for exclusive access.",
+        "Embrace the slow pace of life and travel sustainably.",
+        "Reserve fine-dining experiences well in advance.",
+        "Pack comfortable yet elegant walking attire."
+      ],
+      "hiddenGems": [
+        "The Secret Courtyard of the Old City",
+        "A hidden cascade far from the tourist trail",
+        "An exclusive artisan workshop open by appointment only"
+      ],
+      "instagramSpots": [
+        "The Golden Hour Overlook",
+        "The Royal Heritage Corridor",
+        "The Infinity Pool edge at dawn"
+      ],
+      "personalizedReason": "Your desire for adventure and luxury finds its ultimate expression here, blending raw nature with supreme comfort."
+    }
+  },
+  {
+    "id": "patagonia",
+    "name": "PATAGONIA",
+    "country": "Patagonia",
+    "continent": "Global",
+    "type": "expected",
+    "match": 92,
+    "budget": "₹250,000",
+    "distance": "6000 KM",
+    "travelTime": "12 Hours",
+    "description": "A stunning escape into the heart of Patagonia.",
+    "personalizedReason": "Perfectly suited for your mood, offering a serene yet deeply moving environment.",
+    "imageQuery": "cinematic Patagonia luxury travel emotional",
+    "story": {
+      "heroTitle": "The Soul of Patagonia",
+      "heroSubtitle": "Where ancient traditions meet untamed, breathtaking natural beauty in perfect harmony.",
+      "whyVisit": "Patagonia is an absolute masterpiece of nature and culture. Imagine waking up to sweeping, cinematic vistas that have remained untouched by time. The air is crisp, the light is golden, and every corner whispers stories of a glorious past. This is not just a vacation; it is a profound emotional reset designed to elevate your spirit and immerse you in sheer, unadulterated luxury.",
+      "whyFamous": "Renowned globally for its striking contrasts, Patagonia captures the imagination of elite travelers. Its dramatic landscapes and perfectly preserved heritage sites have made it a crown jewel of international tourism. From exclusive boutique retreats to Michelin-worthy local culinary scenes, the region offers a masterclass in combining raw geographical drama with world-class hospitality and service.",
+      "places": [
+        {
+          "name": "Patagonia Landmark 1",
+          "description": "Experience the breathtaking beauty and rich history of Patagonia Landmark 1. A place where timeless elegance meets unparalleled grandeur, perfectly aligned with your luxury travel aspirations."
+        },
+        {
+          "name": "Patagonia Landmark 2",
+          "description": "Experience the breathtaking beauty and rich history of Patagonia Landmark 2. A place where timeless elegance meets unparalleled grandeur, perfectly aligned with your luxury travel aspirations."
+        },
+        {
+          "name": "Patagonia Landmark 3",
+          "description": "Experience the breathtaking beauty and rich history of Patagonia Landmark 3. A place where timeless elegance meets unparalleled grandeur, perfectly aligned with your luxury travel aspirations."
+        },
+        {
+          "name": "Patagonia Landmark 4",
+          "description": "Experience the breathtaking beauty and rich history of Patagonia Landmark 4. A place where timeless elegance meets unparalleled grandeur, perfectly aligned with your luxury travel aspirations."
+        },
+        {
+          "name": "Patagonia Landmark 5",
+          "description": "Experience the breathtaking beauty and rich history of Patagonia Landmark 5. A place where timeless elegance meets unparalleled grandeur, perfectly aligned with your luxury travel aspirations."
+        }
+      ],
+      "food": [
+        {
+          "name": "Traditional Patagonia Dish 1",
+          "description": "Savor the exquisite flavors of Traditional Patagonia Dish 1. Crafted with traditional techniques and local ingredients, it offers a culinary journey that delights the most refined palates."
+        },
+        {
+          "name": "Traditional Patagonia Dish 2",
+          "description": "Savor the exquisite flavors of Traditional Patagonia Dish 2. Crafted with traditional techniques and local ingredients, it offers a culinary journey that delights the most refined palates."
+        },
+        {
+          "name": "Traditional Patagonia Dish 3",
+          "description": "Savor the exquisite flavors of Traditional Patagonia Dish 3. Crafted with traditional techniques and local ingredients, it offers a culinary journey that delights the most refined palates."
+        },
+        {
+          "name": "Traditional Patagonia Dish 4",
+          "description": "Savor the exquisite flavors of Traditional Patagonia Dish 4. Crafted with traditional techniques and local ingredients, it offers a culinary journey that delights the most refined palates."
+        },
+        {
+          "name": "Traditional Patagonia Dish 5",
+          "description": "Savor the exquisite flavors of Traditional Patagonia Dish 5. Crafted with traditional techniques and local ingredients, it offers a culinary journey that delights the most refined palates."
+        }
+      ],
+      "culture": "The culture here is a vibrant tapestry of indigenous rituals, high-art, and warm, unparalleled hospitality.",
+      "weather": "15°C",
+      "bestSeason": "May to September",
+      "currentSeason": "Summer",
+      "travelTips": [
+        "Always carry a premium scarf for the evening chill.",
+        "Hire a private local curator for exclusive access.",
+        "Embrace the slow pace of life and travel sustainably.",
+        "Reserve fine-dining experiences well in advance.",
+        "Pack comfortable yet elegant walking attire."
+      ],
+      "hiddenGems": [
+        "The Secret Courtyard of the Old City",
+        "A hidden cascade far from the tourist trail",
+        "An exclusive artisan workshop open by appointment only"
+      ],
+      "instagramSpots": [
+        "The Golden Hour Overlook",
+        "The Royal Heritage Corridor",
+        "The Infinity Pool edge at dawn"
+      ],
+      "personalizedReason": "Your desire for adventure and luxury finds its ultimate expression here, blending raw nature with supreme comfort."
+    }
+  },
+  {
+    "id": "new zealand",
+    "name": "NEW ZEALAND",
+    "country": "New Zealand",
+    "continent": "Global",
+    "type": "expected",
+    "match": 97,
+    "budget": "₹250,000",
+    "distance": "6000 KM",
+    "travelTime": "12 Hours",
+    "description": "A stunning escape into the heart of New Zealand.",
+    "personalizedReason": "Perfectly suited for your mood, offering a serene yet deeply moving environment.",
+    "imageQuery": "cinematic New Zealand luxury travel emotional",
+    "story": {
+      "heroTitle": "The Soul of New Zealand",
+      "heroSubtitle": "Where ancient traditions meet untamed, breathtaking natural beauty in perfect harmony.",
+      "whyVisit": "New Zealand is an absolute masterpiece of nature and culture. Imagine waking up to sweeping, cinematic vistas that have remained untouched by time. The air is crisp, the light is golden, and every corner whispers stories of a glorious past. This is not just a vacation; it is a profound emotional reset designed to elevate your spirit and immerse you in sheer, unadulterated luxury.",
+      "whyFamous": "Renowned globally for its striking contrasts, New Zealand captures the imagination of elite travelers. Its dramatic landscapes and perfectly preserved heritage sites have made it a crown jewel of international tourism. From exclusive boutique retreats to Michelin-worthy local culinary scenes, the region offers a masterclass in combining raw geographical drama with world-class hospitality and service.",
+      "places": [
+        {
+          "name": "New Zealand Landmark 1",
+          "description": "Experience the breathtaking beauty and rich history of New Zealand Landmark 1. A place where timeless elegance meets unparalleled grandeur, perfectly aligned with your luxury travel aspirations."
+        },
+        {
+          "name": "New Zealand Landmark 2",
+          "description": "Experience the breathtaking beauty and rich history of New Zealand Landmark 2. A place where timeless elegance meets unparalleled grandeur, perfectly aligned with your luxury travel aspirations."
+        },
+        {
+          "name": "New Zealand Landmark 3",
+          "description": "Experience the breathtaking beauty and rich history of New Zealand Landmark 3. A place where timeless elegance meets unparalleled grandeur, perfectly aligned with your luxury travel aspirations."
+        },
+        {
+          "name": "New Zealand Landmark 4",
+          "description": "Experience the breathtaking beauty and rich history of New Zealand Landmark 4. A place where timeless elegance meets unparalleled grandeur, perfectly aligned with your luxury travel aspirations."
+        },
+        {
+          "name": "New Zealand Landmark 5",
+          "description": "Experience the breathtaking beauty and rich history of New Zealand Landmark 5. A place where timeless elegance meets unparalleled grandeur, perfectly aligned with your luxury travel aspirations."
+        }
+      ],
+      "food": [
+        {
+          "name": "Traditional New Zealand Dish 1",
+          "description": "Savor the exquisite flavors of Traditional New Zealand Dish 1. Crafted with traditional techniques and local ingredients, it offers a culinary journey that delights the most refined palates."
+        },
+        {
+          "name": "Traditional New Zealand Dish 2",
+          "description": "Savor the exquisite flavors of Traditional New Zealand Dish 2. Crafted with traditional techniques and local ingredients, it offers a culinary journey that delights the most refined palates."
+        },
+        {
+          "name": "Traditional New Zealand Dish 3",
+          "description": "Savor the exquisite flavors of Traditional New Zealand Dish 3. Crafted with traditional techniques and local ingredients, it offers a culinary journey that delights the most refined palates."
+        },
+        {
+          "name": "Traditional New Zealand Dish 4",
+          "description": "Savor the exquisite flavors of Traditional New Zealand Dish 4. Crafted with traditional techniques and local ingredients, it offers a culinary journey that delights the most refined palates."
+        },
+        {
+          "name": "Traditional New Zealand Dish 5",
+          "description": "Savor the exquisite flavors of Traditional New Zealand Dish 5. Crafted with traditional techniques and local ingredients, it offers a culinary journey that delights the most refined palates."
+        }
+      ],
+      "culture": "The culture here is a vibrant tapestry of indigenous rituals, high-art, and warm, unparalleled hospitality.",
+      "weather": "15°C",
+      "bestSeason": "May to September",
+      "currentSeason": "Summer",
+      "travelTips": [
+        "Always carry a premium scarf for the evening chill.",
+        "Hire a private local curator for exclusive access.",
+        "Embrace the slow pace of life and travel sustainably.",
+        "Reserve fine-dining experiences well in advance.",
+        "Pack comfortable yet elegant walking attire."
+      ],
+      "hiddenGems": [
+        "The Secret Courtyard of the Old City",
+        "A hidden cascade far from the tourist trail",
+        "An exclusive artisan workshop open by appointment only"
+      ],
+      "instagramSpots": [
+        "The Golden Hour Overlook",
+        "The Royal Heritage Corridor",
+        "The Infinity Pool edge at dawn"
+      ],
+      "personalizedReason": "Your desire for adventure and luxury finds its ultimate expression here, blending raw nature with supreme comfort."
     }
   }
 ];
 
 export const getSmartFallback = (distance: string): Destination[] => {
-  let ids: string[] = [];
+  let pool = [];
   if (distance === "India") {
-    ids = ["leh", "kerala", "jaipur", "andaman"];
-  } else if (distance === "Outside India") {
-    ids = ["kyoto", "santorini", "bali", "switzerland"];
+    pool = [...ALL_DESTINATIONS_INDIA];
+  } else if (distance === "International") {
+    pool = [...ALL_DESTINATIONS_INTL];
   } else {
-    ids = ["iceland", "leh", "santorini", "kerala"];
+    pool = [...ALL_DESTINATIONS_INDIA.slice(0,2), ...ALL_DESTINATIONS_INTL.slice(0,2)];
   }
 
-  const selected = ids.map(id => ALL_DESTINATIONS.find(d => d.id === id)).filter(Boolean) as Destination[];
+  // Pick 4 destinations, make the last one unexpected
+  const selected = pool.sort(() => 0.5 - Math.random()).slice(0, 4);
+  
+  if (selected.length === 4) {
+    selected[3].type = "unexpected";
+    selected[3].isUnexpected = true;
+  }
 
-  return selected.map((dest, index) => {
-    return {
-      ...dest,
-      isUnexpected: index === 3
-    };
-  });
+  return selected;
 };

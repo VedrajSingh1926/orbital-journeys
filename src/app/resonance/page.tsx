@@ -117,7 +117,7 @@ export default function Resonance() {
 
   // Rest of the SVG waves
   return (
-    <main className="relative w-full min-h-screen overflow-x-hidden overflow-y-auto pb-[200px] bg-[#F8F7F4] text-[#111111] flex flex-col pt-32">
+    <main className="relative w-full min-h-screen overflow-x-hidden overflow-y-auto pb-[200px] bg-[#FCFBF7] text-[#111111] flex flex-col pt-32">
       
       {/* Title moved to standard flex layout instead of absolute */}
       <div className="px-12 md:px-24 z-20 opacity-40 mix-blend-multiply flex-shrink-0 mt-8 mb-4">

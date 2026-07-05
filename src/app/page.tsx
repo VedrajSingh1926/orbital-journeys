@@ -97,7 +97,7 @@ export default function AmbientGateway() {
   }, [setLocation]);
 
   return (
-    <main className="relative w-full h-screen overflow-hidden bg-[#111111] text-[#F8F7F4]">
+    <main className="relative w-full h-screen overflow-hidden bg-[#111111] text-[#FCFBF7]">
       {/* Removed old duplicate header location. Header.tsx handles it globally. */}
       {/* Background Video with subtle vignette and noise */}
       <motion.div 
@@ -154,12 +154,12 @@ export default function AmbientGateway() {
                     animate={{ backgroundPosition: ["0% 50%", "100% 50%", "0% 50%"] }}
                     transition={{ duration: 8, repeat: Infinity, ease: "linear" }}
                     style={{ backgroundSize: "200% auto" }}
-                    className="text-6xl md:text-[8rem] font-serif text-transparent bg-clip-text bg-gradient-to-r from-[#F8F7F4] via-[#D6B36A] to-[#F8F7F4] tracking-[0.15em] md:tracking-[0.25em] uppercase font-light leading-none mb-12 drop-shadow-2xl text-center"
+                    className="text-6xl md:text-[8rem] font-serif text-transparent bg-clip-text bg-gradient-to-r from-[#FCFBF7] via-[#D6B36A] to-[#FCFBF7] tracking-[0.15em] md:tracking-[0.25em] uppercase font-light leading-none mb-12 drop-shadow-2xl text-center"
                   >
                     Orbital<br className="md:hidden" /> Journeys
                   </motion.h1>
                   
-                  <div className="h-6 flex items-center justify-center font-serif italic tracking-wide text-lg text-[#F8F7F4]/90">
+                  <div className="h-6 flex items-center justify-center font-serif italic tracking-wide text-lg text-[#FCFBF7]/90">
                     <AnimatePresence mode="wait">
                       <motion.span
                         key={displayLocation}

@@ -17,6 +17,7 @@ import { JourneyProvider } from "../context/JourneyContext";
 import Header from "../components/Header";
 import BackButton from "../components/BackButton";
 import FilmGrain from "../components/FilmGrain";
+import PremiumBackground from "../components/PremiumBackground";
 
 export const metadata: Metadata = {
   title: "Orbital Journeys",
@@ -36,6 +37,7 @@ export default function RootLayout({
       <body className="flex flex-col font-sans text-brand-text bg-brand-bg relative selection:bg-brand-accent selection:text-white">
         <JourneyProvider>
           <SmoothScroll>
+            <PremiumBackground />
             <FilmGrain />
             <Header />
             <BackButton />
