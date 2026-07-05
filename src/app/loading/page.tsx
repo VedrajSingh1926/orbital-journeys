@@ -4,6 +4,7 @@ import { useEffect, useState } from "react";
 import { motion, AnimatePresence } from "framer-motion";
 import { useRouter } from "next/navigation";
 import FilmGrain from "../../components/FilmGrain";
+import { useJourney } from "../../context/JourneyContext";
 
 const messages = [
   "Crafting your journey...",
@@ -15,7 +16,7 @@ export default function ResonanceLoading() {
   const router = useRouter();
   const [index, setIndex] = useState(0);
   const [mounted, setMounted] = useState(false);
-  const { destinations, updateDestinations, mood, companions } = useJourney();
+  const { destinations, updateDestinations, mood, companions, distance, location, days } = useJourney();
 
   useEffect(() => {
     setMounted(true);
@@ -27,27 +28,13 @@ export default function ResonanceLoading() {
         const res = await fetch("/api/enhance", {
           method: "POST",
           headers: { "Content-Type": "application/json" },
-          body: JSON.stringify({ destinations, mood, companions })
+          body: JSON.stringify({ mood, companions, distance, location, days })
         });
         
         if (res.ok) {
-          const { success, enhanced } = await res.json();
-          if (success && enhanced && Array.isArray(enhanced)) {
-            const updated = destinations.map(d => {
-              const enhancement = enhanced.find((e: any) => e.id === d.id);
-              if (enhancement) {
-                return {
-                  ...d,
-                  story: {
-                    ...d.story,
-                    personalizedReason: enhancement.personalizedReason,
-                    whyVisit: enhancement.whyVisit
-                  }
-                };
-              }
-              return d;
-            });
-            updateDestinations(updated);
+          const { success, destinations: generatedDestinations } = await res.json();
+          if (success && generatedDestinations && Array.isArray(generatedDestinations) && generatedDestinations.length === 4) {
+            updateDestinations(generatedDestinations);
           }
         }
       } catch (e) {
