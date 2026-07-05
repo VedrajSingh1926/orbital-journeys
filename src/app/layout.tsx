@@ -29,11 +29,11 @@ export default function RootLayout({
   children: React.ReactNode;
 }>) {
   return (
-    <html
+      <html
       lang="en"
-      className={`${inter.variable} ${playfair.variable} h-full antialiased`}
+      className={`${inter.variable} ${playfair.variable} antialiased`}
     >
-      <body className="min-h-full flex flex-col font-sans text-brand-text bg-brand-bg relative selection:bg-brand-accent selection:text-white">
+      <body className="flex flex-col font-sans text-brand-text bg-brand-bg relative selection:bg-brand-accent selection:text-white">
         <JourneyProvider>
           <SmoothScroll>
             <FilmGrain />

@@ -117,7 +117,7 @@ export default function Resonance() {
 
   // Rest of the SVG waves
   return (
-    <main className="relative w-full min-h-[150vh] overflow-x-hidden bg-[#F8F7F4] text-[#111111] flex flex-col pt-32">
+    <main className="relative w-full min-h-screen overflow-x-hidden overflow-y-auto pb-[200px] bg-[#F8F7F4] text-[#111111] flex flex-col pt-32">
       
       {/* Title moved to standard flex layout instead of absolute */}
       <div className="px-12 md:px-24 z-20 opacity-40 mix-blend-multiply flex-shrink-0 mt-8 mb-4">
@@ -147,8 +147,35 @@ export default function Resonance() {
       </AnimatePresence>
       <div className="absolute inset-0 opacity-[0.4] bg-white/40 pointer-events-none z-0" />
 
-      {/* SVG Waves & Constellation - taking up remaining space */}
-      <div className="relative flex-1 w-full flex items-center justify-center pointer-events-none z-10">
+      {/* Mobile Vertical Layout (Visible only on < md) */}
+      <div className="md:hidden relative z-10 w-full flex-1 flex flex-col items-center gap-8 px-6 pb-24 overflow-y-auto mt-8">
+        {allNodes.map((dest: any) => (
+          <div 
+            key={dest.id}
+            onClick={() => handleNodeClick(dest)}
+            className="w-full max-w-sm bg-white/90 backdrop-blur-md border border-[#111111]/10 rounded-sm p-6 shadow-sm flex flex-col gap-2 cursor-pointer relative overflow-hidden"
+          >
+            {dest.isUnexpected && (
+              <span className="absolute top-0 right-0 bg-[#FFD700] text-[#111111] text-[10px] uppercase tracking-widest px-2 py-1 font-sans font-bold">
+                Unexpected Match
+              </span>
+            )}
+            <h3 className="font-serif text-2xl text-[#111111] mb-1">
+              {dest.name.replace('✦ ', '')}
+            </h3>
+            <p className="font-sans text-xs uppercase tracking-widest text-[#777777]">
+              {dest.country}
+            </p>
+            <div className="flex items-center gap-2 mt-4">
+              <Star className="w-4 h-4 text-[#FFD700] fill-[#FFD700]" />
+              <span className="font-sans text-xs text-[#FFD700] tracking-widest">{dest.match} Match</span>
+            </div>
+          </div>
+        ))}
+      </div>
+
+      {/* SVG Waves & Constellation (Hidden on < md) */}
+      <div className="hidden md:flex relative flex-1 w-full items-center justify-center pointer-events-none z-10">
         <svg viewBox="0 0 1200 800" className="w-full h-full max-w-7xl overflow-visible">
           {allNodes.map((dest: any, index: number) => {
             const isHovered = hovered === dest.id;
@@ -161,12 +188,15 @@ export default function Resonance() {
                 <motion.path
                   d={dest.wave}
                   fill="transparent"
-                  stroke={isHovered || isClicked ? "#D6B36A" : "#111111"}
-                  strokeWidth={isHovered ? 1.5 : 0.5}
+                  stroke={isHovered || isClicked ? "#FFD700" : "#FFD700"}
+                  strokeWidth={isHovered ? 2 : 1}
+                  style={{
+                    filter: 'drop-shadow(0 0 10px rgba(255,215,0,0.5))'
+                  }}
                   initial={{ pathLength: 0, opacity: 0 }}
                   animate={{ 
                     pathLength: 1, 
-                    opacity: isOtherHoveredOrClicked && !isClicked ? 0.4 : (isClicked ? 0 : (isHovered ? 0.8 : 0.4)),
+                    opacity: isOtherHoveredOrClicked && !isClicked ? 0.15 : (isClicked ? 0 : (isHovered ? 0.6 : 0.35)),
                     x: isHovered ? [0, -20, 0] : 0
                   }}
                   transition={{ 
@@ -200,13 +230,13 @@ export default function Resonance() {
 
                   <motion.circle
                     r={isHovered ? 6 : 3}
-                    fill={isHovered || isClicked ? "#D6B36A" : "#111111"}
-                    stroke={isHovered || isClicked ? "#D6B36A" : "none"}
-                    strokeWidth={isHovered || isClicked ? 4 : 0}
-                    strokeOpacity={0.3}
+                    fill={isClicked ? "#111111" : (isHovered ? "#FFD700" : "#111111")}
+                    stroke={isHovered || isClicked ? "#FFD700" : "none"}
+                    strokeWidth={isHovered || isClicked ? (isClicked ? 0.5 : 4) : 0}
+                    strokeOpacity={isClicked ? 0.8 : 0.3}
                     initial={{ opacity: 1, scale: 1 }}
                     animate={{ 
-                      scale: isClicked ? 150 : (isHovered ? 1.2 : 1),
+                      scale: isClicked ? 300 : (isHovered ? 1.2 : 1),
                       opacity: isOtherHoveredOrClicked && !isClicked ? 0.4 : 1
                     }}
                     transition={{ 
@@ -229,11 +259,11 @@ export default function Resonance() {
             animate={{ opacity: 1, y: 0, filter: "blur(0px)" }}
             exit={{ opacity: 0, y: 20, filter: "blur(10px)" }}
             transition={{ duration: 1.2, ease: [0.16, 1, 0.3, 1] }}
-            className="absolute bottom-16 left-12 md:left-24 z-20 max-w-lg pointer-events-none bg-[#FCFBF8]/80 backdrop-blur-2xl p-10 rounded-sm border border-[#111111]/5 shadow-2xl"
+            className="hidden md:block absolute bottom-16 left-12 md:left-24 z-20 max-w-lg pointer-events-none bg-[#FCFBF8]/80 backdrop-blur-2xl p-10 rounded-sm border border-[#111111]/5 shadow-2xl"
           >
             <div className="flex items-center gap-3 mb-4">
-              <Star className="w-5 h-5 text-[#D6B36A] fill-[#D6B36A]" />
-              <span className="font-sans text-xs uppercase tracking-widest text-[#D6B36A] font-medium">
+              <Star className="w-5 h-5 text-[#FFD700] fill-[#FFD700]" />
+              <span className="font-sans text-xs uppercase tracking-widest text-[#FFD700] font-medium">
                 Travel Resonance Score: {activeDest.match || 95}
               </span>
             </div>

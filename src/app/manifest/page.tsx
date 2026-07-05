@@ -1,18 +1,21 @@
 "use client";
 
 import { useEffect, useState } from "react";
-import { motion, animate } from "framer-motion";
+import { motion, animate, AnimatePresence } from "framer-motion";
 import { ArrowRight, Check, Minus, Plus } from "lucide-react";
+import { useRouter } from "next/navigation";
 
 export default function Manifest() {
   const [destData, setDestData] = useState<any>(null);
   const [travelers, setTravelers] = useState(2);
   const [budget, setBudget] = useState(0);
   const [mounted, setMounted] = useState(false);
+  const [animationState, setAnimationState] = useState(0);
+  const router = useRouter();
 
   useEffect(() => {
     setMounted(true);
-    const stored = sessionStorage.getItem("manifest");
+    const stored = sessionStorage.getItem("selectedJourney");
     if (stored) {
       const parsed = JSON.parse(stored);
       console.log("MANIFEST", parsed);
@@ -45,9 +48,116 @@ export default function Manifest() {
     "User preference match"
   ];
 
-  return (
-    <main className="relative w-full min-h-screen bg-[#F8F7F4] text-[#111111] flex items-center justify-center p-6">
+  const handleConfirm = () => {
+    if (animationState !== 0) return;
+    setAnimationState(1);
+    
+    // State 1: Preparing (800ms)
+    setTimeout(() => {
+      setAnimationState(2);
       
+      // State 2: Cinematic travel (1200ms)
+      setTimeout(() => {
+        setAnimationState(3);
+        
+        // State 3: Journey Manifested (1000ms)
+        setTimeout(() => {
+          setAnimationState(4);
+          router.push("/");
+        }, 1000);
+      }, 1200);
+    }, 800);
+  };
+
+  if (!mounted || !destData) {
+    return (
+      <main className="relative w-full min-h-screen bg-[#F8F7F4] text-[#111111] flex flex-col items-center justify-center p-6">
+        <motion.p 
+          initial={{ opacity: 0 }} 
+          animate={{ opacity: 1 }} 
+          transition={{ duration: 1 }}
+          className="font-serif text-2xl tracking-wide"
+        >
+          Curating your manifest...
+        </motion.p>
+      </main>
+    );
+  }
+
+  return (
+    <main className="relative w-full min-h-screen bg-[#F8F7F4] text-[#111111] flex items-center justify-center p-6 overflow-hidden">
+      
+      <AnimatePresence>
+        {animationState === 2 && (
+          <motion.div 
+            initial={{ opacity: 0 }}
+            animate={{ opacity: 1 }}
+            exit={{ opacity: 0 }}
+            className="fixed inset-0 z-50 bg-[#111111] flex items-center justify-center overflow-hidden"
+          >
+            {/* Cinematic stars/particles */}
+            {Array.from({ length: 50 }).map((_, i) => (
+              <motion.div
+                key={`particle-${i}`}
+                className="absolute w-1 h-1 bg-[#D6B36A] rounded-full"
+                style={{
+                  left: '50%',
+                  top: '50%',
+                }}
+                animate={{
+                  x: (Math.random() - 0.5) * window.innerWidth * 2,
+                  y: (Math.random() - 0.5) * window.innerHeight * 2,
+                  scale: Math.random() * 3,
+                  opacity: [0, 1, 0]
+                }}
+                transition={{
+                  duration: Math.random() * 1 + 0.5,
+                  ease: "easeOut"
+                }}
+              />
+            ))}
+            <motion.div
+              initial={{ scale: 0.8, filter: "blur(10px)", opacity: 0 }}
+              animate={{ scale: 1.2, filter: "blur(0px)", opacity: 1 }}
+              transition={{ duration: 1.2 }}
+              className="text-[#D6B36A] font-serif text-4xl md:text-6xl tracking-widest uppercase italic"
+            >
+              Charting Course...
+            </motion.div>
+          </motion.div>
+        )}
+
+        {animationState === 3 && (
+          <motion.div 
+            initial={{ opacity: 0, scale: 0.9 }}
+            animate={{ opacity: 1, scale: 1 }}
+            exit={{ opacity: 0 }}
+            className="fixed inset-0 z-50 bg-[#111111] flex flex-col items-center justify-center"
+          >
+            <motion.div
+              animate={{ scale: [1, 1.2, 1], opacity: [1, 0] }}
+              transition={{ duration: 1 }}
+              className="absolute inset-0 bg-[#D6B36A] opacity-20 pointer-events-none"
+            />
+            <motion.h2 
+              initial={{ y: 20, opacity: 0 }}
+              animate={{ y: 0, opacity: 1 }}
+              className="text-[#F8F7F4] font-serif text-5xl md:text-7xl mb-4"
+            >
+              Journey Manifested
+            </motion.h2>
+            <motion.div 
+              initial={{ scale: 0 }}
+              animate={{ scale: 1 }}
+              transition={{ type: "spring", bounce: 0.5 }}
+              className="w-16 h-16 rounded-full bg-[#D6B36A] flex items-center justify-center text-[#111111]"
+            >
+              <Check className="w-8 h-8" />
+            </motion.div>
+          </motion.div>
+        )}
+      </AnimatePresence>
+
       <motion.div 
         initial={{ opacity: 0, y: 30 }}
         animate={{ opacity: 1, y: 0 }}
@@ -142,12 +252,37 @@ export default function Manifest() {
             animate={{ opacity: 1, y: 0 }}
             transition={{ duration: 1, delay: 2, ease: "easeOut" }}
           >
-            <button className="group relative w-full flex items-center justify-between px-8 py-6 overflow-hidden rounded-sm bg-[#111111] text-[#F8F7F4] hover:bg-[#D6B36A] hover:text-[#111111] transition-colors duration-1000">
-              <span className="relative z-10 font-sans tracking-widest uppercase text-sm">
-                Confirm Journey
-              </span>
-              <ArrowRight className="w-5 h-5 relative z-10 group-hover:translate-x-2 transition-transform duration-700" />
-            </button>
+            {animationState === 0 && (
+              <button 
+                onClick={handleConfirm}
+                className="group relative w-full flex items-center justify-between px-8 py-6 overflow-hidden rounded-sm bg-[#111111] text-[#F8F7F4] hover:bg-[#D6B36A] hover:text-[#111111] transition-colors duration-1000"
+              >
+                <span className="relative z-10 font-sans tracking-widest uppercase text-sm">
+                  Confirm Journey
+                </span>
+                <ArrowRight className="w-5 h-5 relative z-10 group-hover:translate-x-2 transition-transform duration-700" />
+              </button>
+            )}
+            {animationState === 1 && (
+              <motion.div 
+                initial={{ opacity: 0, scale: 0.95 }}
+                animate={{ 
+                  opacity: 1, 
+                  scale: 1.02,
+                  boxShadow: "0px 0px 20px rgba(214,179,106,0.5)"
+                }}
+                className="w-full flex items-center justify-center px-8 py-6 rounded-sm bg-[#D6B36A] text-[#111111] overflow-hidden relative"
+              >
+                <motion.div 
+                  animate={{ x: ["-100%", "100%"] }}
+                  transition={{ repeat: Infinity, duration: 1, ease: "linear" }}
+                  className="absolute inset-0 bg-gradient-to-r from-transparent via-white/30 to-transparent skew-x-12"
+                />
+                <span className="relative z-10 font-sans tracking-widest uppercase text-sm blur-[0.5px]">
+                  Preparing your journey...
+                </span>
+              </motion.div>
+            )}
           </motion.div>
         </div>
       </motion.div>

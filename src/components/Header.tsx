@@ -33,39 +33,58 @@ export default function Header() {
       initial={{ opacity: 0, y: -20 }}
       animate={{ opacity: 1, y: 0 }}
       transition={{ duration: 1.5, ease: [0.16, 1, 0.3, 1] }}
-      className="fixed top-0 left-0 w-full px-6 py-8 md:px-12 md:py-8 z-50 flex justify-between items-center pointer-events-none text-[#F8F7F4] mix-blend-difference"
+      className="fixed top-0 left-0 right-0 z-[100] flex flex-col justify-center items-center pointer-events-none text-[#F8F7F4]"
+      style={{
+        height: '56px',
+        background: 'rgba(0,0,0,0.18)',
+        backdropFilter: 'blur(10px)',
+        WebkitBackdropFilter: 'blur(10px)',
+        borderBottom: '1px solid rgba(255,215,0,0.08)',
+      }}
     >
-      {/* Left: Logo */}
-      <div className={`font-serif tracking-widest uppercase text-sm md:text-base leading-tight w-1/3 transition-all duration-300 ${showBackButton ? "ml-[120px]" : ""}`}>
-        Orbital
-        <br />
-        Journeys
+      {/* Center: Branding & Location/Time */}
+      <div className="flex flex-col items-center justify-center pt-1">
+        <motion.div 
+          animate={{ opacity: [0.8, 1, 0.8] }}
+          transition={{ repeat: Infinity, duration: 4, ease: "easeInOut" }}
+          className="font-serif tracking-[0.3em] uppercase text-[16px] md:text-[18px] leading-tight text-transparent bg-clip-text bg-gradient-to-r from-[#B89645] via-[#D6B36A] to-[#B89645] font-light flex items-center gap-4"
+        >
+          <span className="text-[#D6B36A] text-[10px] opacity-70">✦</span>
+          <span className="drop-shadow-lg">ORBITAL JOURNEYS</span>
+          <span className="text-[#D6B36A] text-[10px] opacity-70">✦</span>
+        </motion.div>
+        <div className="font-sans text-[10px] tracking-[0.25em] opacity-60 uppercase mt-1">
+          {location ? `${location.split(', ').join(' • ')} • ` : ''}{timeStr}
+        </div>
       </div>
 
-      {/* Center: Step Indicator (Only on profile) */}
-      <div className="flex-1 flex justify-center w-1/3">
+      {/* Right: Step Indicator (Only on profile) */}
+      <div className="absolute right-6 md:right-12 top-0 bottom-0 flex items-center">
         {pathname === "/profile" && (
-          <div className="flex items-center gap-2 w-full max-w-[200px]">
+          <div className="flex items-center gap-2 w-24 md:w-32">
             {[0, 1, 2, 3].map((i) => (
               <React.Fragment key={i}>
                 <div 
-                  className={`w-2 h-2 rounded-full transition-all duration-700 ${i === currentStep ? 'bg-[#D6B36A] shadow-[0_0_10px_rgba(214,179,106,0.5)]' : i < currentStep ? 'bg-[#F8F7F4]' : 'bg-[#F8F7F4]/30'}`} 
+                  className={`transition-all duration-700 ${i === currentStep ? 'w-2 h-2' : 'w-1.5 h-1.5'} rounded-full`}
+                  style={{
+                    backgroundColor: '#FFD700',
+                    opacity: i === currentStep ? 1 : 0.8,
+                    boxShadow: i === currentStep ? '0 0 20px rgba(255,215,0,0.6)' : 'none',
+                  }}
                 />
                 {i < 3 && (
                   <div 
-                    className={`flex-1 h-[1px] transition-all duration-700 ${i < currentStep ? 'bg-[#F8F7F4]' : 'bg-[#F8F7F4]/30'}`} 
+                    className="flex-1 h-[1px] transition-all duration-700"
+                    style={{
+                      backgroundColor: '#FFD700',
+                      opacity: i < currentStep ? 0.8 : 0.3,
+                    }}
                   />
                 )}
               </React.Fragment>
             ))}
           </div>
         )}
-      </div>
-
-      {/* Right: Location & Time */}
-      <div className="font-sans text-xs tracking-widest text-right opacity-70 uppercase flex flex-col items-end gap-1 w-1/3">
-        <span>{timeStr}</span>
-        {location && <span>📍 {location}</span>}
       </div>
     </motion.header>
   );

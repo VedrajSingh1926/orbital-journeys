@@ -15,34 +15,24 @@ export default function BackButton({ className }: { className?: string }) {
 
   return (
     <motion.button
-      initial={{ opacity: 0, x: -10 }}
-      animate={{ opacity: 0.8, x: 0 }}
-      whileHover={{ x: -4, scale: 1.03, opacity: 1 }}
-      transition={{ duration: 0.3, ease: "easeOut" }}
+      initial={{ y: 0 }}
+      whileHover={{ y: -2, backgroundColor: 'rgba(255,215,0,0.08)', borderColor: '#FFD700' }}
+      transition={{ duration: 0.2 }}
       onClick={() => router.back()}
-      className="fixed z-[9999] group flex items-center gap-3 text-[#F8F7F4] rounded-[50px] transition-all duration-300 pointer-events-auto"
+      className="fixed z-[999] flex items-center gap-2 transition-colors duration-300 pointer-events-auto"
       style={{
-        top: '24px',
+        top: '76px',
         left: '24px',
-        background: 'rgba(255,255,255,0.08)',
-        backdropFilter: 'blur(20px)',
-        WebkitBackdropFilter: 'blur(20px)',
-        border: '1px solid rgba(255,255,255,0.15)',
-        padding: '12px 20px',
+        background: 'rgba(255,255,255,0.04)',
+        backdropFilter: 'blur(12px)',
+        WebkitBackdropFilter: 'blur(12px)',
+        border: '1px solid rgba(255,215,0,0.25)',
+        borderRadius: '999px',
+        padding: '10px 18px',
+        color: '#FFD700',
       }}
     >
-      <div className="relative overflow-hidden w-6 h-6 flex items-center justify-center">
-        <motion.div
-          className="absolute inset-0 flex items-center justify-center transition-transform duration-300 group-hover:-translate-x-1"
-        >
-          <ArrowLeft className="w-4 h-4" />
-        </motion.div>
-        <motion.div
-          className="absolute inset-0 flex items-center justify-center transition-transform duration-300 group-hover:translate-x-full opacity-100 group-hover:opacity-0"
-        >
-          <ArrowLeft className="w-4 h-4" />
-        </motion.div>
-      </div>
+      <ArrowLeft className="w-4 h-4" />
       <span className="font-sans text-xs uppercase tracking-widest relative mt-[1px]">
         Return
       </span>

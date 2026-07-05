@@ -21,54 +21,70 @@ export default function ResonanceLoading() {
   useEffect(() => {
     setMounted(true);
     
-    // Call AI Enhancement in parallel with loading
+    // Call AI Enhancement with 2000ms timeout
     const enhanceDestinations = async () => {
+      const controller = new AbortController();
+      const timeoutId = setTimeout(() => controller.abort(), 2000);
+      
       try {
         if (!destinations || destinations.length === 0) return;
         const res = await fetch("/api/enhance", {
           method: "POST",
           headers: { "Content-Type": "application/json" },
-          body: JSON.stringify({ mood, companions, distance, location, days })
+          body: JSON.stringify({ destinations, mood, companions }),
+          signal: controller.signal
         });
         
         if (res.ok) {
-          const { success, destinations: generatedDestinations } = await res.json();
-          if (success && generatedDestinations && Array.isArray(generatedDestinations) && generatedDestinations.length === 4) {
-            updateDestinations(generatedDestinations);
+          const { success, enhanced } = await res.json();
+          if (success && enhanced && Array.isArray(enhanced)) {
+            const updated = destinations.map((d: any) => {
+              const enhancement = enhanced.find((e: any) => e.id === d.id);
+              if (enhancement) {
+                return {
+                  ...d,
+                  story: {
+                    ...d.story,
+                    personalizedReason: enhancement.personalizedReason,
+                    emotionalDescription: enhancement.emotionalDescription,
+                    luxuryStoryText: enhancement.luxuryStoryText,
+                    whyVisit: enhancement.luxuryStoryText || enhancement.emotionalDescription || d.story.whyVisit
+                  }
+                };
+              }
+              return d;
+            });
+            updateDestinations(updated);
           }
         }
       } catch (e) {
-        console.warn("AI Enhancement failed, using local DB:", e);
+        console.warn("AI Enhancement failed or timed out, using local DB:", e);
+      } finally {
+        clearTimeout(timeoutId);
+        try {
+          router.replace("/resonance");
+        } catch (e) {
+          window.location.href = "/resonance";
+        }
       }
     };
 
-    // Fire and forget
     enhanceDestinations();
 
     const interval = setInterval(() => {
       setIndex(prev => (prev + 1) % messages.length);
-    }, 600); // Faster cycle to see all texts within 2s
+    }, 600); // cycle messages
 
-    // Exact 2 seconds router transition
-    const timer = setTimeout(() => {
-      try {
-        router.replace("/resonance");
-      } catch (e) {
-        window.location.href = "/resonance";
-      }
-    }, 2000);
-
-    // Hard fallback just in case router is stuck
+    // Hard fallback just in case router is completely stuck
     const fallbackTimer = setTimeout(() => {
       window.location.href = "/resonance";
     }, 2500);
 
     return () => {
       clearInterval(interval);
-      clearTimeout(timer);
       clearTimeout(fallbackTimer);
     };
-  }, [router]);
+  }, [router, destinations, mood, companions, updateDestinations]);
 
   return (
     <main className="relative w-full h-screen overflow-hidden bg-[#F8F7F4] text-[#111111] flex flex-col items-center justify-center">

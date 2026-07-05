@@ -132,18 +132,32 @@ export default function AmbientGateway() {
                 className="absolute inset-0 flex flex-col items-center justify-center bg-[#111111] z-50 text-center px-4"
               >
                 <motion.div
-                  initial={{ opacity: 0, y: 20 }}
-                  animate={{ opacity: 1, y: 0 }}
-                  transition={{ delay: 0.5, duration: 1 }}
+                  initial={{ opacity: 0, scale: 0.95, filter: "blur(20px)" }}
+                  animate={{ opacity: 1, scale: 1, filter: "blur(0px)" }}
+                  transition={{ delay: 0.2, duration: 2.5, ease: [0.16, 1, 0.3, 1] }}
                   className="flex flex-col items-center"
                 >
-                  <div className="w-16 h-[1px] bg-[#D6B36A]/50 mb-8" />
-                  <h2 className="text-xl md:text-3xl font-serif text-[#F8F7F4] mb-4 tracking-widest uppercase opacity-80">
-                    Welcome to
-                  </h2>
-                  <h1 className="text-4xl md:text-7xl font-serif text-[#F8F7F4] mb-12 tracking-tight">
-                    Orbital Journeys
-                  </h1>
+                  <motion.div 
+                    initial={{ opacity: 0, y: -10 }}
+                    animate={{ opacity: 1, y: 0 }}
+                    transition={{ delay: 1, duration: 1.5 }}
+                    className="flex items-center gap-6 mb-8"
+                  >
+                    <div className="w-12 md:w-24 h-[1px] bg-gradient-to-r from-transparent to-[#D6B36A]/60" />
+                    <span className="text-[#D6B36A] tracking-[0.4em] md:tracking-[0.6em] text-[10px] md:text-xs uppercase font-sans font-light">
+                      Curated Intelligence
+                    </span>
+                    <div className="w-12 md:w-24 h-[1px] bg-gradient-to-l from-transparent to-[#D6B36A]/60" />
+                  </motion.div>
+                  
+                  <motion.h1 
+                    animate={{ backgroundPosition: ["0% 50%", "100% 50%", "0% 50%"] }}
+                    transition={{ duration: 8, repeat: Infinity, ease: "linear" }}
+                    style={{ backgroundSize: "200% auto" }}
+                    className="text-6xl md:text-[8rem] font-serif text-transparent bg-clip-text bg-gradient-to-r from-[#F8F7F4] via-[#D6B36A] to-[#F8F7F4] tracking-[0.15em] md:tracking-[0.25em] uppercase font-light leading-none mb-12 drop-shadow-2xl text-center"
+                  >
+                    Orbital<br className="md:hidden" /> Journeys
+                  </motion.h1>
                   
                   <div className="h-6 flex items-center justify-center font-serif italic tracking-wide text-lg text-[#F8F7F4]/90">
                     <AnimatePresence mode="wait">
