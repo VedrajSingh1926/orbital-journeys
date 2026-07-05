@@ -1,7 +1,9 @@
 import type { NextConfig } from "next";
 
 const nextConfig: NextConfig = {
-  /* config options here */
+  turbopack: {
+    root: "C:/Users/vedra/OneDrive/Documents/My Projects/Orbital-journeys"
+  }
 };
 
 export default nextConfig;
