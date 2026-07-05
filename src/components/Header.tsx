@@ -26,6 +26,8 @@ export default function Header() {
     return () => clearInterval(interval);
   }, []);
 
+  const showBackButton = pathname !== "/" && pathname !== "/loading";
+
   return (
     <motion.header
       initial={{ opacity: 0, y: -20 }}
@@ -34,7 +36,7 @@ export default function Header() {
       className="fixed top-0 left-0 w-full px-6 py-8 md:px-12 md:py-8 z-50 flex justify-between items-center pointer-events-none text-[#F8F7F4] mix-blend-difference"
     >
       {/* Left: Logo */}
-      <div className="font-serif tracking-widest uppercase text-sm md:text-base leading-tight w-1/3">
+      <div className={`font-serif tracking-widest uppercase text-sm md:text-base leading-tight w-1/3 transition-all duration-300 ${showBackButton ? "ml-[120px]" : ""}`}>
         Orbital
         <br />
         Journeys

@@ -15,10 +15,49 @@ export default function ResonanceLoading() {
   const router = useRouter();
   const [index, setIndex] = useState(0);
   const [mounted, setMounted] = useState(false);
+  const { destinations, updateDestinations, mood, companions } = useJourney();
 
   useEffect(() => {
     setMounted(true);
     
+    // Call AI Enhancement in parallel with loading
+    const enhanceDestinations = async () => {
+      try {
+        if (!destinations || destinations.length === 0) return;
+        const res = await fetch("/api/enhance", {
+          method: "POST",
+          headers: { "Content-Type": "application/json" },
+          body: JSON.stringify({ destinations, mood, companions })
+        });
+        
+        if (res.ok) {
+          const { success, enhanced } = await res.json();
+          if (success && enhanced && Array.isArray(enhanced)) {
+            const updated = destinations.map(d => {
+              const enhancement = enhanced.find((e: any) => e.id === d.id);
+              if (enhancement) {
+                return {
+                  ...d,
+                  story: {
+                    ...d.story,
+                    personalizedReason: enhancement.personalizedReason,
+                    whyVisit: enhancement.whyVisit
+                  }
+                };
+              }
+              return d;
+            });
+            updateDestinations(updated);
+          }
+        }
+      } catch (e) {
+        console.warn("AI Enhancement failed, using local DB:", e);
+      }
+    };
+
+    // Fire and forget
+    enhanceDestinations();
+
     const interval = setInterval(() => {
       setIndex(prev => (prev + 1) % messages.length);
     }, 600); // Faster cycle to see all texts within 2s

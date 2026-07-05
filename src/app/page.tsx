@@ -44,25 +44,51 @@ export default function AmbientGateway() {
       setHeadlineIndex(prev => (prev + 1) % HEADLINES.length);
     }, 6000);
 
-    // Premium Mood Animation instead of geolocation
+    // Automatic User Location Detection
     if (!hasDetected.current) {
       hasDetected.current = true;
       
-      const hour = new Date().getHours();
-      let moodPhrase = "✦ Somewhere beautiful is calling.";
-      if (hour >= 18 || hour < 5) moodPhrase = "✦ Evening journeys begin differently.";
-      else if (hour >= 5 && hour < 12) moodPhrase = "✦ Morning light brings new horizons.";
-      else moodPhrase = "✦ The world is waiting today.";
+      setDisplayLocation("✦ Discovering your corner of the world...");
 
-      setDisplayLocation(moodPhrase);
-      
-      // We don't set Location in context because we don't want technical location in the header
-      setLocation(""); 
-      setLocationDetected(true);
+      const finalizeLocation = (locStr: string) => {
+        setLocation(locStr);
+        sessionStorage.setItem("userLocation", locStr);
+        localStorage.setItem("userLocation", locStr);
+        setDisplayLocation(locStr);
+        setTimeout(() => {
+          setShowIntro(false);
+        }, 3500);
+      };
 
-      setTimeout(() => {
-        setShowIntro(false);
-      }, 3500);
+      if ("geolocation" in navigator) {
+        navigator.geolocation.getCurrentPosition(
+          async (position) => {
+            try {
+              const { latitude, longitude } = position.coords;
+              const res = await fetch(`https://nominatim.openstreetmap.org/reverse?format=json&lat=${latitude}&lon=${longitude}`);
+              const data = await res.json();
+              const city = data.address.city || data.address.town || data.address.village || "";
+              const state = data.address.state || "";
+              const country = data.address.country || "";
+              const parts = [city, state, country].filter(Boolean);
+              
+              if (parts.length > 0) {
+                finalizeLocation(parts.join(", "));
+              } else {
+                finalizeLocation("✦ The world is waiting today.");
+              }
+            } catch (err) {
+              finalizeLocation("✦ The world is waiting today.");
+            }
+          },
+          (error) => {
+             finalizeLocation("✦ The world is waiting today.");
+          },
+          { timeout: 5000 }
+        );
+      } else {
+        finalizeLocation("✦ The world is waiting today.");
+      }
     }
 
     return () => {
@@ -128,7 +154,16 @@ export default function AmbientGateway() {
                         exit={{ opacity: 0, filter: "blur(10px)", scale: 1.05 }}
                         transition={{ duration: 1.5, ease: "easeOut" }}
                       >
-                        {displayLocation}
+                        {displayLocation.split("").map((char, index) => (
+                          <motion.span
+                            key={index}
+                            initial={{ opacity: 0, filter: "blur(4px)" }}
+                            animate={{ opacity: 1, filter: "blur(0px)" }}
+                            transition={{ duration: 0.4, delay: index * 0.03 }}
+                          >
+                            {char}
+                          </motion.span>
+                        ))}
                       </motion.span>
                     </AnimatePresence>
                   </div>

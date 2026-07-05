@@ -19,6 +19,7 @@ interface JourneyContextType {
   destinations: Destination[];
   usedDestinations: string[];
   generateDestinations: (overrideDistance?: string) => void;
+  updateDestinations: (destinations: Destination[]) => void;
 }
 
 const JourneyContext = createContext<JourneyContextType | undefined>(undefined);
@@ -58,12 +59,17 @@ export function JourneyProvider({ children }: { children: ReactNode }) {
       } catch(storageErr) {
         console.warn("Storage failed", storageErr);
       }
-    } catch (e) {
-      console.warn("Error:", e);
+      setUsedDestinations(prev => [...prev, ...fallbacks.map(f => f.id)]);
+    } catch (error) {
+      console.error("Failed to generate destinations", error);
     }
   };
 
-
+  const updateDestinations = (newDestinations: Destination[]) => {
+    setDestinations(newDestinations);
+    sessionStorage.setItem("journey", JSON.stringify({ destinations: newDestinations }));
+    localStorage.setItem("journey", JSON.stringify({ destinations: newDestinations }));
+  };
 
   return (
     <JourneyContext.Provider value={{
@@ -76,6 +82,7 @@ export function JourneyProvider({ children }: { children: ReactNode }) {
       destinations,
       usedDestinations,
       generateDestinations,
+      updateDestinations,
     }}>
       {children}
     </JourneyContext.Provider>
