@@ -25,7 +25,7 @@ export default function Manifest() {
     }
   }, []);
 
-  const finalBudget = destData ? parseInt(destData.budget.replace(/[^0-9]/g, '')) || 45000 : 45000;
+  const finalBudget = destData?.budget ? parseInt(destData.budget.toString().replace(/[^0-9]/g, '')) || 45000 : 45000;
 
   useEffect(() => {
     const controls = animate(0, finalBudget, {

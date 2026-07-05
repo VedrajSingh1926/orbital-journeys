@@ -25,12 +25,22 @@ export default function ResonanceLoading() {
 
     // Exact 2 seconds router transition
     const timer = setTimeout(() => {
-      router.replace("/resonance");
+      try {
+        router.replace("/resonance");
+      } catch (e) {
+        window.location.href = "/resonance";
+      }
     }, 2000);
+
+    // Hard fallback just in case router is stuck
+    const fallbackTimer = setTimeout(() => {
+      window.location.href = "/resonance";
+    }, 2500);
 
     return () => {
       clearInterval(interval);
       clearTimeout(timer);
+      clearTimeout(fallbackTimer);
     };
   }, [router]);
 

@@ -5,7 +5,6 @@ import { motion, AnimatePresence } from "framer-motion";
 import { useRouter } from "next/navigation";
 import { ArrowRight } from "lucide-react";
 import { useJourney } from "../../context/JourneyContext";
-import BackButton from "../../components/BackButton";
 import PremiumButton from "../../components/PremiumButton";
 
 const MOODS = [
@@ -33,18 +32,17 @@ export default function Profiler() {
     localStorage.removeItem("journey_backup");
   }, []);
 
-  const handleNext = () => {
+  const handleNext = (overrideDistance?: string) => {
     if (currentStep < 3) {
       setCurrentStep(currentStep + 1);
     } else {
-      generateDestinations();
+      generateDestinations(overrideDistance);
       router.push("/loading");
     }
   };
 
   return (
     <main className="relative w-full h-screen overflow-hidden bg-brand-bg text-brand-text selection:bg-brand-accent selection:text-white flex flex-col items-center justify-center">
-      <BackButton />
       
       {/* Removed soft glows to keep it clean */}
 
@@ -202,7 +200,7 @@ export default function Profiler() {
                 {DISTANCES.map((dist) => (
                   <motion.button
                     key={dist}
-                    onClick={() => { setDistance(dist); handleNext(); }}
+                    onClick={() => { setDistance(dist); handleNext(dist); }}
                     className="relative py-4 text-center overflow-hidden group"
                   >
                     <span className="font-serif text-3xl group-hover:text-brand-accent transition-colors duration-500 relative z-10">

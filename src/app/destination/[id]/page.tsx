@@ -4,8 +4,9 @@ import { use, useEffect, useRef, useState } from "react";
 import { motion, useScroll, useTransform } from "framer-motion";
 import { ArrowRight, MapPin, Cloud, Calendar, Plane, CreditCard } from "lucide-react";
 import PremiumButton from "../../../components/PremiumButton";
-import BackButton from "../../../components/BackButton";
 import { useRouter } from "next/navigation";
+
+const slug = (str: string) => str.toLowerCase().replace(/\s+/g, "-");
 
 export default function DestinationStory({ params }: { params: Promise<{ id: string }> }) {
   const unwrappedParams = use(params);
@@ -21,17 +22,37 @@ export default function DestinationStory({ params }: { params: Promise<{ id: str
       setLoading(true);
       try {
         const stored = sessionStorage.getItem("selectedDestination");
+        
+        const fallbackStory = {
+          whyVisit: "Explore unique experiences",
+          whyFamous: "Famous for culture and beauty",
+          places: ["City Center"],
+          food: ["Local Cuisine"],
+          culture: "Rich heritage",
+          weather: "Pleasant",
+          distance: "Unknown",
+          travelTime: "Unknown",
+          personalizedReason: "A beautiful place to visit."
+        };
+
         if (stored) {
           const parsed = JSON.parse(stored);
           console.log("SELECTED", parsed);
-          if (isMounted) {
-            setDestData(parsed);
-          }
+          import("../../../data/destinations").then(({ ALL_DESTINATIONS }) => {
+            const matched = ALL_DESTINATIONS.find(d => slug(d.name) === unwrappedParams.id);
+            if (matched) {
+              if (isMounted) setDestData(matched);
+            } else {
+              if (!parsed.story) parsed.story = fallbackStory;
+              if (isMounted) setDestData(parsed);
+            }
+          });
         } else {
           // Fallback
           import("../../../data/destinations").then(({ ALL_DESTINATIONS }) => {
-            console.log("SELECTED", ALL_DESTINATIONS[0]);
-            if (isMounted) setDestData(ALL_DESTINATIONS[0]);
+            const matched = ALL_DESTINATIONS.find(d => slug(d.name) === unwrappedParams.id) || ALL_DESTINATIONS[0];
+            console.log("SELECTED", matched);
+            if (isMounted) setDestData(matched);
           });
         }
       } catch (e) {
@@ -43,7 +64,7 @@ export default function DestinationStory({ params }: { params: Promise<{ id: str
     
     loadStory();
     return () => { isMounted = false; };
-  }, []);
+  }, [unwrappedParams.id]);
 
   useEffect(() => {
     if (destData) {
@@ -92,19 +113,15 @@ export default function DestinationStory({ params }: { params: Promise<{ id: str
   const imageToUse = destData.image || "https://images.unsplash.com/photo-1493976040374-85c8e12f0c0e?q=80&w=2070";
 
   return (
-    <main ref={containerRef} className="relative w-full bg-[#F8F7F4] text-[#111111] min-h-[300vh]">
+    <main key={unwrappedParams.id} ref={containerRef} className="relative w-full bg-[#F8F7F4] text-[#111111] min-h-[300vh]">
       {/* 1. Hero Section */}
       <div className="relative w-full h-screen overflow-hidden sticky top-0 bg-[#111111]">
         <motion.div 
-          className="absolute inset-0 z-0 bg-cover bg-center"
+          className="absolute inset-0 z-0 bg-cover bg-center bg-[#111111]"
           style={{ backgroundImage: `url(${imageToUse})`, y: heroY, opacity: heroOpacity }}
         >
-          <div className="absolute inset-0 bg-black/40" />
+          <div className="absolute inset-0 bg-gradient-to-b from-black/40 via-transparent to-[#111111]" />
         </motion.div>
-
-        <div className="absolute top-8 left-8 z-50 pointer-events-auto">
-          <BackButton />
-        </div>
         
         <div className="absolute inset-0 z-10 flex flex-col items-center justify-center text-center text-[#F8F7F4] px-4">
           <motion.h1 
@@ -187,8 +204,11 @@ export default function DestinationStory({ params }: { params: Promise<{ id: str
 
 function Section({ title, content, img, index }: { title: string, content: string, img: string, index: number }) {
   const ref = useRef(null);
+  const [isMounted, setIsMounted] = useState(false);
+  useEffect(() => { setIsMounted(true); }, []);
+  
   const { scrollYProgress } = useScroll({
-    target: ref,
+    target: isMounted ? ref : undefined,
     offset: ["start end", "end start"]
   });
   
@@ -212,7 +232,16 @@ function Section({ title, content, img, index }: { title: string, content: strin
           transition={{ duration: 1.5 }}
           viewport={{ once: true }}
         >
-          <img src={img} alt={title} className="w-full h-full object-cover" />
+          <img 
+            src={img} 
+            alt={title} 
+            className="w-full h-full object-cover bg-gradient-to-br from-[#111111] to-[#333333]" 
+            onError={(e) => {
+              if (e.currentTarget.src !== "https://images.unsplash.com/photo-1493976040374-85c8e12f0c0e?q=80&w=2070") {
+                e.currentTarget.src = "https://images.unsplash.com/photo-1493976040374-85c8e12f0c0e?q=80&w=2070";
+              }
+            }}
+          />
         </motion.div>
       </motion.div>
       <div className="w-full md:w-1/2 flex flex-col justify-center px-4 md:px-0">

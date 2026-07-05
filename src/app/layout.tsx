@@ -15,6 +15,7 @@ const playfair = Playfair_Display({
 import SmoothScroll from "../components/SmoothScroll";
 import { JourneyProvider } from "../context/JourneyContext";
 import Header from "../components/Header";
+import BackButton from "../components/BackButton";
 import FilmGrain from "../components/FilmGrain";
 
 export const metadata: Metadata = {
@@ -37,6 +38,7 @@ export default function RootLayout({
           <SmoothScroll>
             <FilmGrain />
             <Header />
+            <BackButton />
             {children}
           </SmoothScroll>
         </JourneyProvider>

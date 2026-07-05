@@ -5,7 +5,6 @@ import { motion, AnimatePresence } from "framer-motion";
 import { useRouter } from "next/navigation";
 import { useJourney } from "../../context/JourneyContext";
 import { Search, X, Star } from "lucide-react";
-import BackButton from "../../components/BackButton";
 import PremiumButton from "../../components/PremiumButton";
 
 export default function Resonance() {
@@ -27,7 +26,7 @@ export default function Resonance() {
     let journeyExists = false;
     let parsedDestinations = [];
     try {
-      const stored = sessionStorage.getItem("journey");
+      const stored = sessionStorage.getItem("journey") || localStorage.getItem("journey");
       console.log("JOURNEY", stored);
       if (stored) {
         journeyExists = true;
@@ -118,17 +117,13 @@ export default function Resonance() {
 
   // Rest of the SVG waves
   return (
-    <main className="relative w-full min-h-[150vh] overflow-hidden bg-[#F8F7F4] text-[#111111] flex flex-col pt-32">
+    <main className="relative w-full min-h-[150vh] overflow-x-hidden bg-[#F8F7F4] text-[#111111] flex flex-col pt-32">
       
       {/* Title moved to standard flex layout instead of absolute */}
-      <div className="px-12 md:px-24 z-20 opacity-40 mix-blend-multiply flex-shrink-0">
+      <div className="px-12 md:px-24 z-20 opacity-40 mix-blend-multiply flex-shrink-0 mt-8 mb-4">
         <h2 className="font-serif text-sm tracking-widest uppercase text-[#111111]">
           Journey Resonance Constellation
         </h2>
-      </div>
-
-      <div className="absolute top-8 left-8 z-50 pointer-events-auto">
-        <BackButton />
       </div>
 
       <AnimatePresence>
@@ -155,7 +150,7 @@ export default function Resonance() {
       {/* SVG Waves & Constellation - taking up remaining space */}
       <div className="relative flex-1 w-full flex items-center justify-center pointer-events-none z-10">
         <svg viewBox="0 0 1200 800" className="w-full h-full max-w-7xl overflow-visible">
-          {allNodes.map((dest: any) => {
+          {allNodes.map((dest: any, index: number) => {
             const isHovered = hovered === dest.id;
             const isOtherHoveredOrClicked = (hovered !== null && !isHovered) || clicked !== null;
             const isClicked = clicked === dest.id;
@@ -192,12 +187,12 @@ export default function Resonance() {
                 >
                   <motion.text
                     x={0}
-                    y={-30}
+                    y={index % 2 === 0 ? -30 : 40}
                     textAnchor="middle"
                     className="font-serif tracking-widest text-xs uppercase"
                     fill="#111111"
                     initial={{ opacity: 0, y: 0 }}
-                    animate={{ opacity: isOtherHoveredOrClicked ? 0.4 : 0.8, y: isHovered ? -35 : -30 }}
+                    animate={{ opacity: isOtherHoveredOrClicked ? 0.4 : 0.8, y: isHovered ? (index % 2 === 0 ? -35 : 45) : (index % 2 === 0 ? -30 : 40) }}
                     transition={{ duration: 0.8, ease: "easeOut" }}
                   >
                     {dest.isUnexpected && !dest.name.startsWith('✦') ? `✦ ${dest.name}` : dest.name}

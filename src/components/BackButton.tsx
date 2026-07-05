@@ -1,12 +1,17 @@
 "use client";
 
 import React from "react";
-import { useRouter } from "next/navigation";
+import { useRouter, usePathname } from "next/navigation";
 import { motion } from "framer-motion";
 import { ArrowLeft } from "lucide-react";
 
-export default function BackButton() {
+export default function BackButton({ className }: { className?: string }) {
   const router = useRouter();
+  const pathname = usePathname();
+
+  if (pathname === "/" || pathname === "/loading") {
+    return null;
+  }
 
   return (
     <motion.button
@@ -15,7 +20,7 @@ export default function BackButton() {
       whileHover={{ opacity: 1, paddingRight: "1.5rem" }}
       transition={{ duration: 1, ease: [0.16, 1, 0.3, 1] }}
       onClick={() => router.back()}
-      className="fixed top-24 left-6 md:left-12 z-40 group flex items-center gap-3 text-[#111111] bg-white/80 backdrop-blur-md px-5 py-3 rounded-full shadow-lg border border-[#111111]/5"
+      className="fixed top-8 left-6 md:top-12 md:left-12 z-[100] group flex items-center gap-3 text-[#111111] bg-white/80 backdrop-blur-md px-5 py-3 rounded-full shadow-lg border border-[#111111]/5"
     >
       <div className="relative overflow-hidden w-6 h-6 flex items-center justify-center">
         <motion.div

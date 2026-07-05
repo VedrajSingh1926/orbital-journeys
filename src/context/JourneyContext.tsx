@@ -1,6 +1,6 @@
 "use client";
 
-import { createContext, useContext, useState, ReactNode } from "react";
+import { createContext, useContext, useState, useEffect, ReactNode } from "react";
 import { getSmartFallback, Destination } from "../data/destinations";
 
 interface JourneyContextType {
@@ -18,7 +18,7 @@ interface JourneyContextType {
   setCompanions: (companions: string) => void;
   destinations: Destination[];
   usedDestinations: string[];
-  generateDestinations: () => void;
+  generateDestinations: (overrideDistance?: string) => void;
 }
 
 const JourneyContext = createContext<JourneyContextType | undefined>(undefined);
@@ -34,15 +34,27 @@ export function JourneyProvider({ children }: { children: ReactNode }) {
   const [destinations, setDestinations] = useState<Destination[]>([]);
   const [usedDestinations, setUsedDestinations] = useState<string[]>([]);
 
-  const generateDestinations = () => {
+  useEffect(() => {
+    const stored = sessionStorage.getItem("journey") || localStorage.getItem("journey");
+    if (stored) {
+      try {
+        setDestinations(JSON.parse(stored).destinations || []);
+      } catch (e) {
+        console.error("Failed to parse stored journey", e);
+      }
+    }
+  }, []);
+
+  const generateDestinations = (overrideDistance?: string) => {
     try {
-      const fallbacks = getSmartFallback(distance);
+      const activeDistance = overrideDistance || distance;
+      const fallbacks = getSmartFallback(activeDistance);
       setDestinations(fallbacks);
       
       const payload = JSON.stringify({ destinations: fallbacks });
       try {
         sessionStorage.setItem("journey", payload);
-        localStorage.setItem("journey_backup", payload);
+        localStorage.setItem("journey", payload);
       } catch(storageErr) {
         console.warn("Storage failed", storageErr);
       }
