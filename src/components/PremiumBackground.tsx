@@ -4,7 +4,7 @@ import { motion } from "framer-motion";
 
 export default function PremiumBackground() {
   return (
-    <div className="fixed inset-0 pointer-events-none z-[-1] overflow-hidden bg-[#FCFBF7]">
+    <div className="fixed inset-0 pointer-events-none overflow-hidden bg-[#FCFBF7]">
       {/* 1. Base Background Color (#FCFBF7) */}
 
       {/* 2. Soft Radial Gradients */}

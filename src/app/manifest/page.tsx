@@ -71,7 +71,7 @@ export default function Manifest() {
 
   if (!mounted || !destData) {
     return (
-      <main className="relative w-full min-h-screen bg-[#FCFBF7] text-[#111111] flex flex-col items-center justify-center p-6">
+      <main className="relative w-full min-h-screen bg-transparent text-[#111111] flex flex-col items-center justify-center p-6">
         <motion.p 
           initial={{ opacity: 0 }} 
           animate={{ opacity: 1 }} 
@@ -85,7 +85,7 @@ export default function Manifest() {
   }
 
   return (
-    <main className="relative w-full min-h-screen bg-[#FCFBF7] text-[#111111] flex items-center justify-center p-6 overflow-hidden">
+    <main className="relative w-full min-h-screen bg-transparent text-[#111111] flex items-center justify-center p-6 overflow-hidden">
       
       <AnimatePresence>
         {animationState === 2 && (
@@ -219,7 +219,7 @@ export default function Manifest() {
               </div>
             </div>
             
-            <div className="mb-8 p-6 bg-white border border-[#111111]/10 rounded-sm shadow-[0_8px_30px_rgb(0,0,0,0.04)]">
+            <div className="mb-8 p-6 bg-[#FCFBF8] border border-[#111111]/10 rounded-sm shadow-[0_8px_30px_rgb(0,0,0,0.04)]">
               <h3 className="font-sans text-xs tracking-widest uppercase text-[#D6B36A] mb-3">Experience Summary</h3>
               <p className="font-serif italic text-lg leading-relaxed">{destData && destData.story ? destData.story.whyVisit : 'A journey to discover the unknown.'}</p>
             </div>

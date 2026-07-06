@@ -91,7 +91,7 @@ export default function MagneticButton() {
 
       {/* Hover background fill */}
       <motion.div
-        className="absolute inset-0 bg-white"
+        className="absolute inset-0 bg-[#FAF8F3]"
         initial={{ scale: 0 }}
         animate={{ scale: isHovered ? 1.5 : 0 }}
         transition={{ duration: 0.4, ease: "circOut" }}

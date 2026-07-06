@@ -154,7 +154,7 @@ export default function AmbientGateway() {
                     animate={{ backgroundPosition: ["0% 50%", "100% 50%", "0% 50%"] }}
                     transition={{ duration: 8, repeat: Infinity, ease: "linear" }}
                     style={{ backgroundSize: "200% auto" }}
-                    className="text-6xl md:text-[8rem] font-serif text-transparent bg-clip-text bg-gradient-to-r from-[#FCFBF7] via-[#D6B36A] to-[#FCFBF7] tracking-[0.15em] md:tracking-[0.25em] uppercase font-light leading-none mb-12 drop-shadow-2xl text-center"
+                    className="text-[clamp(2.5rem,10vw,8rem)] font-serif text-transparent bg-clip-text bg-gradient-to-r from-[#FCFBF7] via-[#D6B36A] to-[#FCFBF7] tracking-[clamp(0.15em,0.5vw,0.25em)] uppercase font-light leading-none mb-12 drop-shadow-2xl text-center"
                   >
                     Orbital<br className="md:hidden" /> Journeys
                   </motion.h1>
@@ -186,7 +186,7 @@ export default function AmbientGateway() {
             ) : (
               <motion.h1 
                 key={headlineIndex}
-                className="absolute text-5xl md:text-[7rem] font-serif font-light leading-[1.05] tracking-tight w-full text-center"
+                className="absolute text-[clamp(2.5rem,8vw,7rem)] font-serif font-light leading-[1.05] tracking-tight w-full text-center"
                 initial={{ opacity: 0, y: 30, filter: "blur(8px)" }}
                 animate={{ opacity: 1, y: 0, filter: "blur(0px)" }}
                 exit={{ opacity: 0, y: -30, filter: "blur(8px)" }}

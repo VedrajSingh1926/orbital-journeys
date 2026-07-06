@@ -117,7 +117,7 @@ export default function Resonance() {
 
   // Rest of the SVG waves
   return (
-    <main className="relative w-full min-h-screen overflow-x-hidden overflow-y-auto pb-[200px] bg-[#FCFBF7] text-[#111111] flex flex-col pt-32">
+    <main className="relative w-full min-h-screen overflow-x-hidden overflow-y-auto pb-[200px] bg-transparent text-[#111111] flex flex-col pt-32">
       
       {/* Title moved to standard flex layout instead of absolute */}
       <div className="px-12 md:px-24 z-20 opacity-40 mix-blend-multiply flex-shrink-0 mt-8 mb-4">
@@ -145,7 +145,7 @@ export default function Resonance() {
           />
         )}
       </AnimatePresence>
-      <div className="absolute inset-0 opacity-[0.4] bg-white/40 pointer-events-none z-0" />
+      <div className="absolute inset-0 opacity-[0.4] bg-[#FCFBF8]/40 pointer-events-none z-0" />
 
       {/* Mobile Vertical Layout (Visible only on < md) */}
       <div className="md:hidden relative z-10 w-full flex-1 flex flex-col items-center gap-8 px-6 pb-24 overflow-y-auto mt-8">
@@ -153,7 +153,7 @@ export default function Resonance() {
           <div 
             key={dest.id}
             onClick={() => handleNodeClick(dest)}
-            className="w-full max-w-sm bg-white/90 backdrop-blur-md border border-[#111111]/10 rounded-sm p-6 shadow-sm flex flex-col gap-2 cursor-pointer relative overflow-hidden"
+            className="w-full max-w-sm bg-[#FCFBF8]/90 backdrop-blur-md border border-[#111111]/10 rounded-sm p-6 shadow-[0_8px_30px_rgb(0,0,0,0.04)] flex flex-col gap-2 cursor-pointer relative overflow-hidden"
           >
             {dest.isUnexpected && (
               <span className="absolute top-0 right-0 bg-[#FFD700] text-[#111111] text-[10px] uppercase tracking-widest px-2 py-1 font-sans font-bold">

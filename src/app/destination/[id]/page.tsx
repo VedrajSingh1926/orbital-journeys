@@ -56,7 +56,7 @@ export default function DestinationStory({ params }: { params: Promise<{ id: str
 
   if (loading) {
     return (
-      <main className="w-full h-screen flex flex-col items-center justify-center bg-[#FCFBF7] text-[#111111]">
+      <main className="w-full h-screen flex flex-col items-center justify-center bg-transparent text-[#111111]">
          <motion.p
            initial={{ opacity: 0, y: 10 }}
            animate={{ opacity: 1, y: 0 }}
@@ -69,14 +69,14 @@ export default function DestinationStory({ params }: { params: Promise<{ id: str
     );
   }
 
-  if (!destData) return <div className="h-screen w-full bg-[#FCFBF7] flex items-center justify-center text-[#111111] text-xl font-serif">Journey data unavailable.</div>;
+  if (!destData) return <div className="h-screen w-full bg-transparent flex items-center justify-center text-[#111111] text-xl font-serif">Journey data unavailable.</div>;
 
   const s = destData.story;
   const iQuery = destData.imageQuery || `${destData.name} cinematic luxury travel`;
 
   return (
     <>
-      <main key={unwrappedParams.id} className="relative w-full bg-[#FCFBF7] text-[#111111]">
+      <main key={unwrappedParams.id} className="relative w-full bg-transparent text-[#111111]">
         <div className="absolute inset-0 pointer-events-none opacity-[0.03] z-0 mix-blend-multiply" style={{ backgroundImage: "url('data:image/svg+xml,%3Csvg viewBox=%220 0 200 200%22 xmlns=%22http://www.w3.org/2000/svg%22%3E%3Cfilter id=%22noiseFilter%22%3E%3CfeTurbulence type=%22fractalNoise%22 baseFrequency=%220.65%22 numOctaves=%223%22 stitchTiles=%22stitch%22/%3E%3C/filter%3E%3Crect width=%22100%25%22 height=%22100%25%22 filter=%22url(%23noiseFilter)%22/%3E%3C/svg%3E')" }}></div>
         
         {/* 1. Hero Section */}
@@ -95,7 +95,7 @@ export default function DestinationStory({ params }: { params: Promise<{ id: str
               initial={{ opacity: 0, y: 30 }}
               animate={{ opacity: 1, y: 0 }}
               transition={{ duration: 1.5, ease: "easeOut" }}
-              className="text-5xl md:text-[8rem] font-serif tracking-tight leading-none mb-6 uppercase drop-shadow-2xl"
+              className="text-[clamp(3rem,8vw,8rem)] font-serif tracking-tight leading-none mb-6 uppercase drop-shadow-2xl"
             >
               {s?.heroTitle || destData.name.replace('✦ ', '')}
             </motion.h1>
@@ -119,11 +119,11 @@ export default function DestinationStory({ params }: { params: Promise<{ id: str
         </div>
 
         {/* 2. Story Sections */}
-        <div className="relative z-20 bg-[#FCFBF7] pt-24 pb-32 px-4 md:px-16 xl:px-24 flex flex-col gap-32 border-t border-[#111111]/10">
+        <div className="relative z-20 bg-transparent pt-24 pb-32 px-4 md:px-16 xl:px-24 flex flex-col gap-32 border-t border-[#111111]/10">
           
           <section className="max-w-7xl mx-auto w-full flex flex-col md:flex-row items-center gap-12 md:gap-24">
             <div className="w-full md:w-1/2 flex flex-col justify-center">
-              <h2 className="text-4xl md:text-5xl font-serif mb-6 text-[#111111] capitalize">Why Visit</h2>
+              <h2 className="text-[clamp(2rem,4vw,3rem)] font-serif mb-6 text-[#111111] capitalize">Why Visit</h2>
               <p className="text-lg md:text-xl font-serif text-[#555555] leading-relaxed">{s?.whyVisit}</p>
             </div>
             <div className="w-full md:w-1/2">
@@ -158,7 +158,7 @@ export default function DestinationStory({ params }: { params: Promise<{ id: str
               </div>
             </div>
             <div className="w-full md:w-1/2 flex flex-col justify-center">
-              <h2 className="text-4xl md:text-5xl font-serif mb-6 text-[#111111] capitalize">Why Famous</h2>
+              <h2 className="text-[clamp(2rem,4vw,3rem)] font-serif mb-6 text-[#111111] capitalize">Why Famous</h2>
               <p className="text-lg md:text-xl font-serif text-[#555555] leading-relaxed">{s?.whyFamous}</p>
             </div>
           </section>
@@ -168,7 +168,7 @@ export default function DestinationStory({ params }: { params: Promise<{ id: str
             <div>
               <div className="flex items-center gap-4 mb-8">
                 <Map className="w-8 h-8 text-[#D6B36A]" />
-                <h2 className="text-4xl font-serif text-[#111111]">Iconic Places</h2>
+                <h2 className="text-[clamp(2rem,4vw,2.5rem)] font-serif text-[#111111]">Iconic Places</h2>
               </div>
               <div className="flex flex-col gap-6">
                 {s?.places?.map((p: any, i: number) => (
@@ -182,7 +182,7 @@ export default function DestinationStory({ params }: { params: Promise<{ id: str
             <div>
               <div className="flex items-center gap-4 mb-8">
                 <Coffee className="w-8 h-8 text-[#D6B36A]" />
-                <h2 className="text-4xl font-serif text-[#111111]">Culinary Journey</h2>
+                <h2 className="text-[clamp(2rem,4vw,2.5rem)] font-serif text-[#111111]">Culinary Journey</h2>
               </div>
               <div className="flex flex-col gap-6">
                 {s?.food?.map((f: any, i: number) => (
@@ -245,7 +245,7 @@ export default function DestinationStory({ params }: { params: Promise<{ id: str
 
           {/* Travel Logistics Grid */}
           <section className="max-w-6xl mx-auto w-full pt-24 border-t border-[#111111]/10 px-4">
-            <h3 className="text-4xl font-serif mb-16 text-center text-[#111111]">Logistics & Context</h3>
+            <h3 className="text-[clamp(2rem,4vw,2.5rem)] font-serif mb-16 text-center text-[#111111]">Logistics & Context</h3>
             <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8 md:gap-12">
               
               <div className="p-8 border border-[#111111]/10 rounded-[24px] hover:border-[#D6B36A]/50 transition-colors duration-500 flex flex-col h-full bg-[#FCFBF7]/80 shadow-[0_8px_30px_rgb(0,0,0,0.04)]">
@@ -288,7 +288,7 @@ export default function DestinationStory({ params }: { params: Promise<{ id: str
 
           {/* CTA */}
           <section className="w-full pt-32 pb-32 mt-16 border-t-2 border-b-2 border-dashed border-[#111111]/20 bg-[#111111]/5 flex flex-col items-center justify-center">
-            <h2 className="font-serif text-5xl md:text-7xl mb-12 text-[#111111] uppercase tracking-tight text-center px-4">
+            <h2 className="font-serif text-[clamp(3rem,6vw,4.5rem)] mb-12 text-[#111111] uppercase tracking-tight text-center px-4">
               Manifest Your Journey
             </h2>
             <button

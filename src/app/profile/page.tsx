@@ -42,12 +42,12 @@ export default function Profiler() {
   };
 
   return (
-    <main className="relative w-full h-screen overflow-hidden bg-brand-bg text-brand-text selection:bg-brand-accent selection:text-white flex flex-col items-center justify-center">
+    <main className="relative w-full min-h-[100dvh] overflow-y-auto overflow-x-hidden bg-transparent text-brand-text selection:bg-brand-accent selection:text-white flex flex-col items-center justify-center">
       
       {/* Removed soft glows to keep it clean */}
 
 
-      <div className="relative z-10 w-full max-w-5xl px-6 mx-auto flex flex-col items-center h-full pt-32 pb-16 justify-center">
+      <div className="relative z-10 w-full max-w-5xl px-6 mx-auto flex flex-col items-center h-full pt-24 md:pt-32 pb-16 justify-center">
         <div className="flex-1 w-full flex flex-col items-center justify-center mt-12">
           <AnimatePresence mode="wait">
           {currentStep === 0 && (
@@ -59,7 +59,7 @@ export default function Profiler() {
               transition={{ duration: 1.2, ease: [0.16, 1, 0.3, 1] }}
               className="flex flex-col items-center w-full"
             >
-              <h2 className="text-4xl md:text-6xl font-serif mb-16 text-center tracking-tight font-light">
+              <h2 className="text-[clamp(1.75rem,5vw,3.75rem)] font-serif mb-16 text-center tracking-tight font-light">
                 What are you seeking?
               </h2>
               <div className="grid grid-cols-1 md:grid-cols-2 gap-x-16 gap-y-8 max-w-3xl">
@@ -69,7 +69,7 @@ export default function Profiler() {
                     onClick={() => { setMood(mood.id); handleNext(); }}
                     className="group relative flex flex-col items-start py-4 border-b border-transparent hover:border-brand-accent/30 transition-all duration-700 text-left"
                   >
-                    <span className="font-serif text-2xl md:text-3xl text-brand-text group-hover:text-brand-accent transition-colors duration-700">
+                    <span className="font-serif text-[clamp(1.5rem,4vw,1.875rem)] text-brand-text group-hover:text-brand-accent transition-colors duration-700">
                       {mood.id}
                     </span>
                     <span className="font-sans text-xs uppercase tracking-widest text-brand-secondary mt-2 opacity-0 group-hover:opacity-100 transition-opacity duration-700">
@@ -90,7 +90,7 @@ export default function Profiler() {
               transition={{ duration: 1.2, ease: [0.16, 1, 0.3, 1] }}
               className="flex flex-col items-center w-full"
             >
-              <h2 className="text-4xl md:text-6xl font-serif mb-16 text-center tracking-tight font-light">
+              <h2 className="text-[clamp(1.75rem,5vw,3.75rem)] font-serif mb-16 text-center tracking-tight font-light">
                 For how many days?
               </h2>
               
@@ -103,7 +103,7 @@ export default function Profiler() {
                       animate={{ y: 0, opacity: 1, rotateX: 0 }}
                       exit={{ y: "-50%", opacity: 0, rotateX: 90 }}
                       transition={{ duration: 0.6, ease: [0.16, 1, 0.3, 1] }}
-                      className="absolute text-8xl md:text-[8rem] font-serif font-light text-brand-accent"
+                      className="absolute text-[clamp(4.5rem,15vw,8rem)] font-serif font-light text-brand-accent"
                       style={{ transformOrigin: "center" }}
                     >
                       {days}
@@ -162,7 +162,7 @@ export default function Profiler() {
               transition={{ duration: 1.2, ease: [0.16, 1, 0.3, 1] }}
               className="flex flex-col items-center w-full"
             >
-              <h2 className="text-4xl md:text-6xl font-serif mb-16 text-center tracking-tight font-light">
+              <h2 className="text-[clamp(1.75rem,5vw,3.75rem)] font-serif mb-16 text-center tracking-tight font-light">
                 Who shares the journey?
               </h2>
               
@@ -192,7 +192,7 @@ export default function Profiler() {
               transition={{ duration: 1.2, ease: [0.16, 1, 0.3, 1] }}
               className="flex flex-col items-center w-full"
             >
-              <h2 className="text-4xl md:text-6xl font-serif mb-16 text-center tracking-tight font-light">
+              <h2 className="text-[clamp(2.25rem,6vw,3.75rem)] font-serif mb-16 text-center tracking-tight font-light">
                 How far would you go?
               </h2>
               

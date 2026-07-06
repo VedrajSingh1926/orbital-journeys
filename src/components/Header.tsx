@@ -59,7 +59,7 @@ export default function Header() {
       </div>
 
       {/* Right: Step Indicator (Only on profile) */}
-      <div className="absolute right-6 md:right-12 top-0 bottom-0 flex items-center">
+      <div className="absolute right-6 md:right-12 top-0 bottom-0 hidden md:flex items-center">
         {pathname === "/profile" && (
           <div className="flex items-center gap-2 w-24 md:w-32">
             {[0, 1, 2, 3].map((i) => (

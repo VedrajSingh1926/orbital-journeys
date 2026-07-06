@@ -108,7 +108,7 @@ export default function ResonanceLoading() {
   }, [router, mood, companions, distance, location, days, updateDestinations]);
 
   return (
-    <main className="relative w-full h-screen overflow-hidden bg-[#FCFBF7] text-[#111111] flex flex-col items-center justify-center">
+    <main className="relative w-full h-screen overflow-hidden bg-transparent text-[#111111] flex flex-col items-center justify-center">
       <FilmGrain />
       
       <div className="absolute inset-0 z-0 pointer-events-none overflow-hidden bg-[#111111]">
